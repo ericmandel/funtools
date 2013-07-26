@@ -1,0 +1,21 @@
+***************
+*** 111,119 ****
+    /* optional value column for binning */
+    if( fun->vbin >= 0 ){
+      dovcol = 1;
+!     voffset = fun->header->table->col[fun->bin[2]].offset;
+!     vsize = fun->header->table->col[fun->bin[2]].size;
+!     vtype = fun->header->table->col[fun->bin[2]].type;
+    }
+    else{
+      dovcol = 0;
+--- 111,119 ----
+    /* optional value column for binning */
+    if( fun->vbin >= 0 ){
+      dovcol = 1;
+!     voffset = fun->header->table->col[fun->vbin].offset;
+!     vsize = fun->header->table->col[fun->vbin].size;
+!     vtype = fun->header->table->col[fun->vbin].type;
+    }
+    else{
+      dovcol = 0;
