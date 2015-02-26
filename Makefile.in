@@ -34,7 +34,7 @@ exec_prefix =		@exec_prefix@
 # to be different than those used for actually reference files at
 # run-time.  INSTALL_ROOT is prepended to $prefix and $exec_prefix
 # when installing files.
-INSTALL_ROOT =
+INSTALL_ROOT = $(DESTDIR)
 
 # Directory in which to install the .a or .so binary for the FUNTOOLS library:
 LIB_INSTALL_DIR =	$(INSTALL_ROOT)$(exec_prefix)/lib
@@ -43,10 +43,10 @@ LIB_INSTALL_DIR =	$(INSTALL_ROOT)$(exec_prefix)/lib
 BIN_INSTALL_DIR =	$(INSTALL_ROOT)$(exec_prefix)/bin
 
 # Directory in which to install the funtools.h include file:
-INCLUDE_INSTALL_DIR =	$(INSTALL_ROOT)$(prefix)/include
+INCLUDE_INSTALL_DIR =	$(INSTALL_ROOT)$(prefix)/include/funtools
 
 # Top-level directory for manual entries:
-MAN_INSTALL_DIR =	$(INSTALL_ROOT)$(prefix)/man
+MAN_INSTALL_DIR =	$(INSTALL_ROOT)$(prefix)/share/man
 
 # Top-level directory for share entries:
 MAN_SHARE_DIR =		$(INSTALL_ROOT)$(prefix)/share/funtools
@@ -386,7 +386,7 @@ install::
 		@for dir in $(SUBDIRS); do \
 		   echo " "; \
 		   echo Installing in $$dir ...; \
-		   (cd $$dir; $(MAKE) $@) ; \
+		   (cd $$dir; $(MAKE) INSTALL_ROOT=$(INSTALL_ROOT) INCLUDE_INSTALL_DIR=$(INCLUDE_INSTALL_DIR) $@) ; \
 		done
 
 install::	install-man
@@ -422,7 +422,7 @@ install-binaries: lib $(PROGS) $(SCRIPTS) $(DS9HELPERS)
 	    do \
 	    if [ ! -d $$i ] ; then \
 		echo "Making directory $$i"; \
-		mkdir $$i; \
+		mkdir -p $$i; \
 		chmod 755 $$i; \
 		else true; \
 		fi; \
