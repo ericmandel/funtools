@@ -1,4 +1,4 @@
-#include <mainlib.h>
+#include "mainlib.h"
 
 #if HAVE_TCL
 

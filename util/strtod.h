@@ -11,7 +11,7 @@
 #ifndef	__strtod_h
 #define	__strtod_h
 
-#include <prsetup.h>
+#include "prsetup.h"
 
 extern int SAOdtype;
 

@@ -12,7 +12,7 @@
 #define	__word_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 #ifdef HAVE_STRING_H
 #include <string.h>
@@ -23,8 +23,8 @@
 #if HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
-#include <prsetup.h>
-#include <xalloc.h>
+#include "prsetup.h"
+#include "xalloc.h"
 
 /* defines the types of callback procedure we use */
 typedef char *(*MacroCB)(

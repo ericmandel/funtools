@@ -20,7 +20,7 @@
 #ifndef	__nan_h
 #define	__nan_h
 
-#include <prsetup.h>
+#include "prsetup.h"
 
 #define _BIG_ENDIAN @BIGENDIAN@
 

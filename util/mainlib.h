@@ -12,7 +12,7 @@
 #define	__mainlib_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 #ifdef HAVE_STRING_H
 #include <string.h>
@@ -29,11 +29,11 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/types.h>
-#include <prsetup.h>
-#include <xalloc.h>
-#include <word.h>
-#include <find.h>
-#include <gio.h>
+#include "prsetup.h"
+#include "xalloc.h"
+#include "word.h"
+#include "find.h"
+#include "gio.h"
 
 /* types of mainlibs we recognize */
 #define MAINLIB_ERROR 0

@@ -27,11 +27,11 @@
 #define FUN_VERSION "1.4.6"
 
 #ifndef FUNTOOLS_PRIVATE
-#include <prsetup.h>
+#include "prsetup.h"
 #define USE_XFILEIO 1
-#include <fitsy.h>
+#include "fitsy.h"
 #undef USE_XFILEIO
-#include <wcs.h>
+#include "wcs.h"
 typedef void *Fun;
 #endif
 

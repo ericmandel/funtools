@@ -2,14 +2,14 @@
 #define	__dl_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #ifdef HAVE_DLFCN_H
 #include <dlfcn.h>
 #endif
 
-#include <prsetup.h>
+#include "prsetup.h"
 
 _PRbeg
 

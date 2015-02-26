@@ -11,7 +11,7 @@
 #ifndef	__swap_h
 #define	__swap_h
 
-#include <prsetup.h>
+#include "prsetup.h"
 
 /* data types */
 #define TY_CHAR		1

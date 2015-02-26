@@ -5,13 +5,13 @@
 #define FITSY_H
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #if USE_XFILEIO
-#include <xfileio.h>
+#include "xfileio.h"
 #else
-#include <xfile.h>
+#include "xfile.h"
 #endif
 
 #ifdef __STDC__
@@ -30,7 +30,7 @@
 
 #include <ctype.h>
 
-#include <longlong.h>
+#include "longlong.h"
 
 #ifndef NULL
 #define NULL	0

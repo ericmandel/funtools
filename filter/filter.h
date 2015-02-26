@@ -12,7 +12,7 @@
 #define	__filter_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 /* avoid use of system -- its not secure */
@@ -34,28 +34,28 @@
 #include <string.h>
 #endif
 #include <sys/types.h>
-#include <prsetup.h>
-#include <gio.h>
-#include <file.h>
-#include <find.h>
-#include <macro.h>
-#include <word.h>
-#include <xalloc.h>
-#include <strtod.h>
+#include "prsetup.h"
+#include "gio.h"
+#include "file.h"
+#include "find.h"
+#include "macro.h"
+#include "word.h"
+#include "xalloc.h"
+#include "strtod.h"
 #define USE_XFILEIO 1
-#include <fitsy.h>
+#include "fitsy.h"
 #undef USE_XFILEIO
-#include <idx.h>
-#include <wcs.h>
-#include <column.h>
-#include <tl.h>
-#include <dl.h>
-#include <mkrtemp.h>
-#include <zprocess.h>
-#include <winprocess.h>
-#include <parse.h>
+#include "idx.h"
+#include "wcs.h"
+#include "column.h"
+#include "tl.h"
+#include "dl.h"
+#include "mkrtemp.h"
+#include "zprocess.h"
+#include "winprocess.h"
+#include "parse.h"
 #ifdef USE_LAUNCH
-#include <xlaunch.h>
+#include "xlaunch.h"
 #endif
 
 #ifndef OBJPATH

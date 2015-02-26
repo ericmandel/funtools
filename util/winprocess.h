@@ -13,7 +13,7 @@
 #define	__winprocess_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 #include <stdio.h>
 #ifdef HAVE_UNISTD_H
@@ -25,7 +25,7 @@
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
-#include <prsetup.h>
+#include "prsetup.h"
 
 #if defined(HAVE_CYGWIN) || defined(WIN32)
 

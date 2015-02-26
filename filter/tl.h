@@ -11,7 +11,7 @@
 #ifndef	__tl_h
 #define	__tl_h
 
-#include <prsetup.h>
+#include "prsetup.h"
 
 _PRbeg
 

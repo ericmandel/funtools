@@ -12,7 +12,7 @@
 #define	__funtoolsP_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #include <stdio.h>
@@ -32,20 +32,20 @@
 #include <getopt.h>
 #endif
 #include <sys/types.h>
-#include <prsetup.h>
+#include "prsetup.h"
 #define USE_XFILEIO 1
-#include <fitsy.h>
+#include "fitsy.h"
 #undef USE_XFILEIO
-#include <wcs.h>
-#include <filter.h>
-#include <file.h>
-#include <swap.h>
-#include <word.h>
-#include <parse.h>
-#include <xalloc.h>
-#include <mkrtemp.h>
-#include <NaN.h>
-#include <xlaunch.h>
+#include "wcs.h"
+#include "filter.h"
+#include "file.h"
+#include "swap.h"
+#include "word.h"
+#include "parse.h"
+#include "xalloc.h"
+#include "mkrtemp.h"
+#include "NaN.h"
+#include "xlaunch.h"
 
 #ifndef MAXINT
 #define MAXINT	2147483647
@@ -338,6 +338,6 @@ int FunView _PRx((Fun fun, char *view, char *vmode, char *fname, int fmax));
 
 _PRend
 
-#include <funtools.h>
+#include "funtools.h"
 
 #endif /* __funtoolsP.h */

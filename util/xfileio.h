@@ -7,7 +7,7 @@
 #ifndef XFILEIO_H
 #define XFILEIO_H
 
-#include <gio.h>
+#include "gio.h"
 
 /* define the basic IO routines */
 typedef GIO File;

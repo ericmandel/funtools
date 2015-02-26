@@ -12,7 +12,7 @@
 #define	__macro_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #include <stdio.h>
@@ -26,7 +26,7 @@
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
-#include <prsetup.h>
+#include "prsetup.h"
 
 typedef char *(*MacroCall)(
 #ifdef ANSI_FUNC
