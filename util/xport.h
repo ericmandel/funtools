@@ -11,7 +11,7 @@
 #define	__xport_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #if HAVE_MINGW32

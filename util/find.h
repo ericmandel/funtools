@@ -12,7 +12,7 @@
 #define	__find_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #include <stdio.h>
@@ -25,8 +25,8 @@
 #endif
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <xalloc.h>
-#include <prsetup.h>
+#include "xalloc.h"
+#include "prsetup.h"
 
 _PRbeg
 

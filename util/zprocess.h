@@ -14,7 +14,7 @@
 #define	__zprocess_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 #include <stdio.h>
 #ifdef HAVE_UNISTD_H
@@ -28,8 +28,8 @@
 #endif
 #include <sys/time.h>
 #include <signal.h>
-#include <xlaunch.h>
-#include <find.h>
+#include "xlaunch.h"
+#include "find.h"
 
 _PRbeg
 

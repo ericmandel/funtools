@@ -12,7 +12,7 @@
 #define	__xalloc_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #include <sys/types.h>
@@ -33,7 +33,7 @@
 #include <setjmp.h>
 #endif
 
-#include <prsetup.h>
+#include "prsetup.h"
 
 _PRbeg
 

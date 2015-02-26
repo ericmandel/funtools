@@ -12,7 +12,7 @@
 #define	__mkrtemp_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #include <sys/types.h>
@@ -31,9 +31,9 @@
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
-#include <prsetup.h>
-#include <word.h>
-#include <xalloc.h>
+#include "prsetup.h"
+#include "word.h"
+#include "xalloc.h"
 
 #ifdef __APPLE__
 #define lrand48  random

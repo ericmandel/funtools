@@ -11,10 +11,10 @@
 #ifndef _gio_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
-#include <xport.h>
+#include "xport.h"
 
 #include <stdio.h>
 #ifdef HAVE_STRING_H
@@ -46,8 +46,8 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 
-#include <prsetup.h>
-#include <xalloc.h>
+#include "prsetup.h"
+#include "xalloc.h"
 
 /* use ftello/fseeko (assuming its available) if we are using 64-bit offsets */
 #if _FILE_OFFSET_BITS == 64

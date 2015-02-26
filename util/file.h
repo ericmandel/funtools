@@ -12,7 +12,7 @@
 #define	__file_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #include <stdio.h>
@@ -28,9 +28,9 @@
 #endif
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <prsetup.h>
-#include <macro.h>
-#include <xalloc.h>
+#include "prsetup.h"
+#include "macro.h"
+#include "xalloc.h"
 
 _PRbeg
 int FileExists _PRx((char *filename));

@@ -12,7 +12,7 @@
 #define	__xlaunch_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #include <stdio.h>
@@ -33,10 +33,10 @@
 #if HAVE_POSIX_SPAWN
 #include <spawn.h>
 #endif
-#include <xport.h>
-#include <word.h>
-#include <xalloc.h>
-#include <prsetup.h>
+#include "xport.h"
+#include "word.h"
+#include "xalloc.h"
+#include "prsetup.h"
 
 #define LAUNCH_ARGS 1024
 

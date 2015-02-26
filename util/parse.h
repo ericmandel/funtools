@@ -12,7 +12,7 @@
 #define	__parse_h
 
 #if HAVE_CONFIG_H
-#include <conf.h>
+#include "conf.h"
 #endif
 
 #include <stdio.h>
@@ -33,12 +33,12 @@
 #endif
 #include <ctype.h>
 
-#include <prsetup.h>
-#include <strtod.h>
-#include <xalloc.h>
-#include <word.h>
-#include <gio.h>
-#include <longlong.h>
+#include "prsetup.h"
+#include "strtod.h"
+#include "xalloc.h"
+#include "word.h"
+#include "gio.h"
+#include "longlong.h"
 
 #define PARSE_DEBUG 1
 #if PARSE_DEBUG
