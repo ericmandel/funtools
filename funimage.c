@@ -338,12 +338,16 @@ main(argc, argv)
     t = strchr(s, ',');
     strncat(newname, s, t-s);
     strncat(newname, ",y:", SZ_LINE-strlen(newname));
-    s = ++t;
-    t = strchr(s, ',');
-    strncat(newname, s, t-s);
+    if (t != NULL) {
+      s = ++t;
+      t = strchr(s, ',');
+      strncat(newname, s, t-s);
+    }
     strncat(newname, "),", SZ_LINE-strlen(newname));
-    s = ++t;
-    strncat(newname, s, SZ_LINE-strlen(newname));
+    if (t != NULL) {
+	s = ++t;
+	strncat(newname, s, SZ_LINE-strlen(newname));
+    }
     iname = newname;
   }
 

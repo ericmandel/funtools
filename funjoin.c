@@ -737,7 +737,7 @@ main(argc, argv)
       case 'a':
 	if( argv[i][2] ){
 	  j = atoi(&argv[i][2])-1;
-	  if( (j >= 0) && (j < MAXIFILE) ){
+	  if( (j >= 0) && (j < MAXIFILE) && (i < argc-1)){
 	    files[j].actstr = argv[++i];
 	  }
 	  else{
@@ -751,7 +751,7 @@ main(argc, argv)
       case 'b':
 	if( argv[i][2] ){
 	  j = atoi(&argv[i][2])-1;
-	  if( (j >= 0) && (j < MAXIFILE) ){
+	  if( (j >= 0) && (j < MAXIFILE) && (i < argc-1)){
 	    files[j].bstr = argv[++i];
 	  }
 	  else{
@@ -765,7 +765,7 @@ main(argc, argv)
       case 'j':
 	if( argv[i][2] ){
 	  j = atoi(&argv[i][2])-1;
-	  if( (j >= 0) && (j < MAXIFILE) ){
+	  if( (j >= 0) && (j < MAXIFILE) && (i < argc-1)){
 	    files[j].jname = argv[++i];
 	  }
 	  else{
@@ -773,25 +773,35 @@ main(argc, argv)
 	  }
 	}
 	else{
-	  defcol = argv[++i];
+          if (i < argc-1) {
+	    defcol = argv[++i];
+	  }
 	}
 	break;
       case 'm':
-	minmatch = atoi(argv[++i])+1;
+        if (i < argc-1) {
+	  minmatch = atoi(argv[++i])+1;
+	}
 	if( minmatch < 1 ) minmatch = 1;
 	break;
       case 'M':
-	maxmatch = atoi(argv[++i])+1;
+        if (i < argc-1) {
+	  maxmatch = atoi(argv[++i])+1;
+	}
 	if( maxmatch < 1 ) maxmatch = 1;
 	break;
       case 's':
 	jfiles = JFILES_COL;
 	break;
       case 'S':
-	jfiles = argv[++i];
+        if (i < argc-1) {
+	  jfiles = argv[++i];
+	}
 	break;
       case 't':
-	tol = atof(argv[++i]);
+        if (i < argc-1) {
+	  tol = atof(argv[++i]);
+	}
 	if( tol <= 0 ){
 	  gerror(stderr, "tolerance value must be positive\n");
 	}
