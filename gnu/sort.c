@@ -2775,7 +2775,7 @@ if ( !BinarySort ) {
 		xfwrite (buf, 1, cc, ofp);
 	      if (ferror (fp))
 		{
-		  fprintf (stderr, files[i]);
+  	          fprintf (stderr, "%s", files[i]);
 		  cleanup ();
 		  exit (2);
 		}
