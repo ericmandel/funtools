@@ -131,7 +131,7 @@
 .IX Title "funcolumnselect 3"
 .TH funcolumnselect 3 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunColumnSelect \- select Funtools columns\fR
+FunColumnSelect \- select Funtools columns
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 .Vb 1
@@ -179,19 +179,19 @@ following basic data types are recognized:
 .IP "\(bu" 4
 A: \s-1ASCII\s0 characters
 .IP "\(bu" 4
-B: unsigned 8\-bit char
+B: unsigned 8-bit char
 .IP "\(bu" 4
-I: signed 16\-bit int
+I: signed 16-bit int
 .IP "\(bu" 4
-U: unsigned 16\-bit int (not standard \s-1FITS\s0)
+U: unsigned 16-bit int (not standard \s-1FITS\s0)
 .IP "\(bu" 4
-J: signed 32\-bit int
+J: signed 32-bit int
 .IP "\(bu" 4
-V: unsigned 32\-bit int (not standard \s-1FITS\s0)
+V: unsigned 32-bit int (not standard \s-1FITS\s0)
 .IP "\(bu" 4
-E: 32\-bit float
+E: 32-bit float
 .IP "\(bu" 4
-D: 64\-bit float
+D: 64-bit float
 .RE
 .RS 4
 .Sp
@@ -276,7 +276,7 @@ array. By default, this offset value is set to zero and the data
 specified starts at the beginning of the array. The offset usually
 is specified in terms of the data type of the column. Thus an offset
 specification of [5] means a 20\-byte offset if the data type is a
-32\-bit integer, and a 40\-byte offset for a double. If you want to
+32-bit integer, and a 40\-byte offset for a double. If you want to
 specify a byte offset instead of an offset tied to the column data type,
 precede the offset value with 'B', e.g. [B6] means a 6\-bye offset,
 regardless of the column data type.
@@ -593,7 +593,7 @@ wanted to read columns into contiguous arrays, you specify \fBorg=soa\fR:
 .PP
 Note that the only modification to the call is in the plist string.
 .PP
-Of course, instead of using staticly allocated arrays, you also can specify
+Of course, instead of using statically allocated arrays, you also can specify
 dynamically allocated pointers:
 .PP
 .Vb 7
@@ -661,4 +661,4 @@ for working examples of how
 \&\fIFunColumnSelect()\fR is used.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

@@ -128,10 +128,10 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "regcoords n"
-.TH regcoords n "April 14, 2011" "version 1.4.5" "SAORD Documentation"
+.IX Title "regcoords 7"
+.TH regcoords 7 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBRegCoords: Spatial Region Coordinates\fR
+RegCoords \- Spatial Region Coordinates
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 This document describes the specification of coordinate systems, and the 
@@ -278,7 +278,7 @@ An example of using sky coordinate systems follows:
 .PP
 .Vb 4
 \&  global coordsys B1950
-\&  -box 175.54d 20.01156d 10' 10'
+\&  \-box 175.54d 20.01156d 10' 10'
 \&  local coordsys J2000
 \&  pie 179.57d 22.4d 0 360 n=4 && annulus 179.57d 22.4d 3' 24' n=5
 .Ve
@@ -342,4 +342,4 @@ can be generated safely by asking ds9 to save/display regions in
 pixels using the \s-1PHYSICAL\s0 coordsys.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

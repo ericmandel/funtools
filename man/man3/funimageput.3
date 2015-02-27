@@ -131,7 +131,7 @@
 .IX Title "funimageput 3"
 .TH funimageput 3 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunImagePut \- put an image to a Funtools file\fR
+FunImagePut \- put an image to a Funtools file
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 .Vb 1
@@ -190,7 +190,7 @@ Thus, a simple program to generate a \s-1FITS\s0 image might look like this:
 \&    ... fill dbuf ...
 \&  }
 \&  /* put the image (header will be generated automatically */
-\&  if( !FunImagePut(fun, buf, dim1, dim2, -64, NULL) )
+\&  if( !FunImagePut(fun, buf, dim1, dim2, \-64, NULL) )
 \&    gerror(stderr, "could not FunImagePut: %s\en", argv[1]);
 \&  FunClose(fun);
 \&  free(dbuf);
@@ -222,4 +222,4 @@ image padding. However, this is not necessary if you subsequently call
 \&\fIFunClose()\fR without doing any other I/O to the \s-1FITS\s0 file.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

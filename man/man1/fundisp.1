@@ -131,18 +131,18 @@
 .IX Title "fundisp 1"
 .TH fundisp 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfundisp \- display data in a Funtools data file\fR
+fundisp \- display data in a Funtools data file
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-fundisp  [\-f format] [\-l] [\-n] [\-T] <iname> [columns|bitpix=n]
+\&\fBfundisp\fR  [\-f format] [\-l] [\-n] [\-T] <iname> [columns|bitpix=n]
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 5
-\&  -f      # format string for display
-\&  -l      # display image as a list containing the columns X, Y, VAL
-\&  -n      # don't output header
-\&  -F [c]  # use specified character as column separator (def: space)
-\&  -T      # output in rdb/starbase format (tab separators)
+\&  \-f      # format string for display
+\&  \-l      # display image as a list containing the columns X, Y, VAL
+\&  \-n      # don't output header
+\&  \-F [c]  # use specified character as column separator (def: space)
+\&  \-T      # output in rdb/starbase format (tab separators)
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -189,15 +189,15 @@ argument can be used to specify the columns to display.  For example:
 \&  [sh] fundisp "test.ev[time-(int)time>=.99]" "x y time"
 \&          X        Y                  TIME
 \&   -------- -------- ---------------------
-\&          5       -6           40.99000000
-\&          4       -5           59.99000000
-\&         -1        0          154.99000000
-\&         -2        1          168.99000000
-\&         -3        2          183.99000000
-\&         -4        3          199.99000000
-\&         -5        4          216.99000000
-\&         -6        5          234.99000000
-\&         -7        6          253.99000000
+\&          5       \-6           40.99000000
+\&          4       \-5           59.99000000
+\&         \-1        0          154.99000000
+\&         \-2        1          168.99000000
+\&         \-3        2          183.99000000
+\&         \-4        3          199.99000000
+\&         \-5        4          216.99000000
+\&         \-6        5          234.99000000
+\&         \-7        6          253.99000000
 .Ve
 .PP
 The special column \fB$REGION\fR can be specified to display the
@@ -207,15 +207,15 @@ region id of each row:
 \&  [sh $] fundisp "test.ev[time-(int)time>=.99&&annulus(0 0 0 10 n=3)]" 'x y time $REGION'
 \&          X        Y                  TIME     REGION
 \&   -------- -------- --------------------- ----------
-\&          5       -6           40.99000000          3
-\&          4       -5           59.99000000          2
-\&         -1        0          154.99000000          1
-\&         -2        1          168.99000000          1
-\&         -3        2          183.99000000          2
-\&         -4        3          199.99000000          2
-\&         -5        4          216.99000000          2
-\&         -6        5          234.99000000          3
-\&         -7        6          253.99000000          3
+\&          5       \-6           40.99000000          3
+\&          4       \-5           59.99000000          2
+\&         \-1        0          154.99000000          1
+\&         \-2        1          168.99000000          1
+\&         \-3        2          183.99000000          2
+\&         \-4        3          199.99000000          2
+\&         \-5        4          216.99000000          2
+\&         \-6        5          234.99000000          3
+\&         \-7        6          253.99000000          3
 .Ve
 .PP
 Here only rows with the proper fractional time and whose position also is
@@ -225,18 +225,18 @@ Columns can be excluded from display using a minus sign before the
 column:
 .PP
 .Vb 12
-\&  [sh $] fundisp "test.ev[time-(int)time>=.99]" "-time"
+\&  [sh $] fundisp "test.ev[time-(int)time>=.99]" "\-time"
 \&          X        Y      PHA         PI          DX          DY
 \&   -------- -------- -------- ---------- ----------- -----------
-\&          5       -6        5         -6        5.50       -6.50
-\&          4       -5        4         -5        4.50       -5.50
-\&         -1        0       -1          0       -1.50        0.50
-\&         -2        1       -2          1       -2.50        1.50
-\&         -3        2       -3          2       -3.50        2.50
-\&         -4        3       -4          3       -4.50        3.50
-\&         -5        4       -5          4       -5.50        4.50
-\&         -6        5       -6          5       -6.50        5.50
-\&         -7        6       -7          6       -7.50        6.50
+\&          5       \-6        5         \-6        5.50       \-6.50
+\&          4       \-5        4         \-5        4.50       \-5.50
+\&         \-1        0       \-1          0       \-1.50        0.50
+\&         \-2        1       \-2          1       \-2.50        1.50
+\&         \-3        2       \-3          2       \-3.50        2.50
+\&         \-4        3       \-4          3       \-4.50        3.50
+\&         \-5        4       \-5          4       \-5.50        4.50
+\&         \-6        5       \-6          5       \-6.50        5.50
+\&         \-7        6       \-7          6       \-7.50        6.50
 .Ve
 .PP
 All columns except the time column are displayed.
@@ -245,18 +245,18 @@ The special column \fB$N\fR can be specified to display the
 ordinal value of each row. Thus, continuing the previous example:
 .PP
 .Vb 12
-\&  fundisp "test.ev[time-(int)time>=.99]" '-time $n'
+\&  fundisp "test.ev[time-(int)time>=.99]" '\-time $n'
 \&         X        Y      PHA         PI          DX          DY          N
 \&   ------- -------- -------- ---------- ----------- ----------- ----------
-\&         5       -6        5         -6        5.50       -6.50        337
-\&         4       -5        4         -5        4.50       -5.50        356
-\&        -1        0       -1          0       -1.50        0.50        451
-\&        -2        1       -2          1       -2.50        1.50        465
-\&        -3        2       -3          2       -3.50        2.50        480
-\&        -4        3       -4          3       -4.50        3.50        496
-\&        -5        4       -5          4       -5.50        4.50        513
-\&        -6        5       -6          5       -6.50        5.50        531
-\&        -7        6       -7          6       -7.50        6.50        550
+\&         5       \-6        5         \-6        5.50       \-6.50        337
+\&         4       \-5        4         \-5        4.50       \-5.50        356
+\&        \-1        0       \-1          0       \-1.50        0.50        451
+\&        \-2        1       \-2          1       \-2.50        1.50        465
+\&        \-3        2       \-3          2       \-3.50        2.50        480
+\&        \-4        3       \-4          3       \-4.50        3.50        496
+\&        \-5        4       \-5          4       \-5.50        4.50        513
+\&        \-6        5       \-6          5       \-6.50        5.50        531
+\&        \-7        6       \-7          6       \-7.50        6.50        550
 .Ve
 .PP
 Note that the column specification is enclosed in single quotes to protect
@@ -335,7 +335,7 @@ If the \fB\-l\fR (list) switch is used, then an image is displayed as a
 list containing the columns: X, Y, \s-1VAL\s0. For example:
 .PP
 .Vb 33
-\&  fundisp -l "test1.fits[2:6,2:7]" bitpix=-32
+\&  fundisp \-l "test1.fits[2:6,2:7]" bitpix=-32
 \&            X          Y         VAL
 \&   ---------- ---------- -----------
 \&            2          2        6.00
@@ -413,7 +413,7 @@ having that data type). For example, you can change the double and
 short formats for all columns like this:
 .PP
 .Vb 1
-\&  [sh] fundisp -f "D=%22.11f I=%3d" snr.ev "time x y"
+\&  [sh] fundisp \-f "D=%22.11f I=%3d" snr.ev "time x y"
 .Ve
 .PP
 .Vb 5
@@ -427,7 +427,7 @@ short formats for all columns like this:
 Alternatively, you can change the format of the time and x columns like this:
 .PP
 .Vb 1
-\&  [sh] fundisp -f "time=%22.11f x=%3d" snr.ev "time x y"
+\&  [sh] fundisp \-f "time=%22.11f x=%3d" snr.ev "time x y"
 .Ve
 .PP
 .Vb 5
@@ -449,7 +449,7 @@ column name.  This means that, in the examples above, \*(L"X=%3d\*(R" will refer
 to the X (bit) datatype, while \*(L"x=%3d\*(R" will refer to the X column:
 .PP
 .Vb 1
-\&  [sh] fundisp -f "X=%3d" snr.ev "x y"
+\&  [sh] fundisp \-f "X=%3d" snr.ev "x y"
 .Ve
 .PP
 .Vb 5
@@ -461,7 +461,7 @@ to the X (bit) datatype, while \*(L"x=%3d\*(R" will refer to the X column:
 .Ve
 .PP
 .Vb 1
-\&  [sh] fundisp -f "x=%3d" snr.ev "x y"
+\&  [sh] fundisp \-f "x=%3d" snr.ev "x y"
 .Ve
 .PP
 .Vb 5
@@ -509,7 +509,7 @@ list. Note that you must supply a minimum field width, i.e., \*(L"%6d\*(R" and
 By using \-f [format], you can change the double and short formats like this:
 .PP
 .Vb 1
-\&  [sh] fundisp -f "22.11f - - 3d" snr.ev "time x y"
+\&  [sh] fundisp \-f "22.11f - - 3d" snr.ev "time x y"
 .Ve
 .PP
 .Vb 5
@@ -530,7 +530,6 @@ such as sed, at the cost of generating unaligned columns. For example:
 .PP
 fundisp \-F',' snr.ev'[cir 512 512 .1]'
        X,       Y,     \s-1PHA\s0,      \s-1PI\s0,                 \s-1TIME\s0,      \s-1DX\s0,      \s-1DY\s0
-\&\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-
      512,     512,       6,       7,    79493997.45854475,     578,     574
      512,     512,       8,       9,    79494575.58943175,     579,     573
      512,     512,       5,       6,    79493631.03866175,     578,     575
@@ -539,7 +538,6 @@ fundisp \-F',' snr.ev'[cir 512 512 .1]'
 .PP
 fundisp \-F',' snr.ev'[cir 512 512 .1]' | sed 's/ *, */,/g'
        X,Y,PHA,PI,TIME,DX,DY
-\&\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-,\-\-\-\-\-\-\-\-
      512,512,6,7,79493997.45854475,578,574
      512,512,8,9,79494575.58943175,579,573
      512,512,5,6,79493631.03866175,578,575
@@ -588,4 +586,4 @@ The resulting filter file can then be used in various funtools programs:
 to process only the events in the good-time intervals.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

@@ -131,16 +131,16 @@
 .IX Title "funhist 1"
 .TH funhist 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfunhist \- create a 1D histogram of a column (from a FITS binary table or raw event file) or an image\fR
+funhist \- create a 1D histogram of a column (from a FITS binary table or raw event file) or an image
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funhist  [\-n|\-w|\-T] <iname> [column] [[lo:hi:]bins]
+\&\fBfunhist\fR  [\-n|\-w|\-T] <iname> [column] [[lo:hi:]bins]
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 3
-\&  -n    # normalize bin value by the width of each bin
-\&  -w    # specify bin width instead of number of bins in arg3
-\&  -T    # output in rdb/starbase format (tab separators)
+\&  \-n    # normalize bin value by the width of each bin
+\&  \-w    # specify bin width instead of number of bins in arg3
+\&  \-T    # output in rdb/starbase format (tab separators)
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -193,7 +193,7 @@ to specify the width of each bin rather than the number of bins. Thus:
 means that 5 bins of width 20 are used in the histogram, while:
 .PP
 .Vb 1
-\&  funhist -w test.ev pha 1:100:5
+\&  funhist \-w test.ev pha 1:100:5
 .Ve
 .PP
 means that 20 bins of width 5 are used in the histogram.
@@ -209,20 +209,20 @@ can be processed thus:
 \&  [sh] funhist test.ev pha
 \&  # data file:        /home/eric/data/test.ev
 \&  # column:           pha
-\&  # min,max,bins:     -7.5 7.5 15
+\&  # min,max,bins:     \-7.5 7.5 15
 .Ve
 .PP
 .Vb 17
 \&     bin     value               lo_edge               hi_edge
 \&  ------ --------- --------------------- ---------------------
-\&       1        22           -7.50000000           -6.50000000
-\&       2        21           -6.50000000           -5.50000000
-\&       3        20           -5.50000000           -4.50000000
-\&       4        19           -4.50000000           -3.50000000
-\&       5        18           -3.50000000           -2.50000000
-\&       6        17           -2.50000000           -1.50000000
-\&       7        16           -1.50000000           -0.50000000
-\&       8        30           -0.50000000            0.50000000
+\&       1        22           \-7.50000000           \-6.50000000
+\&       2        21           \-6.50000000           \-5.50000000
+\&       3        20           \-5.50000000           \-4.50000000
+\&       4        19           \-4.50000000           \-3.50000000
+\&       5        18           \-3.50000000           \-2.50000000
+\&       6        17           \-2.50000000           \-1.50000000
+\&       7        16           \-1.50000000           \-0.50000000
+\&       8        30           \-0.50000000            0.50000000
 \&       9        16            0.50000000            1.50000000
 \&      10        17            1.50000000            2.50000000
 \&      11        18            2.50000000            3.50000000
@@ -269,7 +269,7 @@ For a table histogram, the \fB\-n\fR(normalize) switch can be used to
 normalize the bin value by the width of the bin (i.e., hi_edge\-lo_edge):
 .PP
 .Vb 5
-\&  [sh] funhist -n test.ev pha 1:6:3 
+\&  [sh] funhist \-n test.ev pha 1:6:3 
 \&  # data file:          test.ev
 \&  # column:             pha
 \&  # min,max,bins:       0.5 6.5 3
@@ -352,12 +352,12 @@ results, using a script such as:
 .PP
 .Vb 7
 \&  #!/bin/sh
-\&  sed -e '1,/---- .*/d
+\&  sed \-e '1,/---- .*/d
 \&  /^$/,$d' | \e
 \&  awk '\e
 \&  BEGIN{print "set nokey; set title \e"funhist\e"; set xlabel \e"bin\e"; set ylabel \e"counts\e"; plot \e"-\e" with boxes"}   \e
 \&  {print $3, $2, $4-$3}'        | \e
-\&  gnuplot -persist - 1>/dev/null 2>&1
+\&  gnuplot \-persist - 1>/dev/null 2>&1
 .Ve
 .PP
 Similar plot commands are supplied in the script \fBfunhist.plot\fR:
@@ -367,4 +367,4 @@ Similar plot commands are supplied in the script \fBfunhist.plot\fR:
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

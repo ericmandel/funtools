@@ -128,10 +128,10 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "funregions n"
-.TH funregions n "April 14, 2011" "version 1.4.5" "SAORD Documentation"
+.IX Title "funregions 7"
+.TH funregions 7 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBRegions: Spatial Region Filtering\fR
+FunRegions \- Spatial Region Filtering
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 This document contains a summary of the user interface for spatial
@@ -483,8 +483,8 @@ which is equivalent to:
 .PP
 The latter syntax only applies the pi test to the first region.
 .PP
-For image-style filtering, the \fB@filename\fR can specify an 8\-bit
-or 16\-bit \s-1FITS\s0 image. In this case, the pixel values in the mask image
+For image-style filtering, the \fB@filename\fR can specify an 8-bit
+or 16-bit \s-1FITS\s0 image. In this case, the pixel values in the mask image
 are used as the region mask. The valid pixels in the mask must have
 positive values.  Zero values are excluded from the mask and negative
 values are not allowed.  Moreover, the region id value is taken as
@@ -675,4 +675,4 @@ Region Coordinates, and
 Region Boundaries.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

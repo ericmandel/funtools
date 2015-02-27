@@ -131,7 +131,7 @@
 .IX Title "funtablerowget 3"
 .TH funtablerowget 3 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunTableRowGet \- get Funtools rows\fR
+FunTableRowGet \- get Funtools rows
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 .Vb 1
@@ -192,8 +192,8 @@ will be the same as the second argument, if the latter is non\-NULL).
 \&      ev = buf+i;
 \&      /* rearrange some values. etc. */
 \&      ev->energy = (ev->pi+ev->pha)/2.0;
-\&      ev->pha = -ev->pha;
-\&      ev->pi = -ev->pi;
+\&      ev->pha = \-ev->pha;
+\&      ev->pi = \-ev->pi;
 \&    }
 \&    /* write out this batch of rows */
 \&    FunTableRowPut(fun2, buf, got, 0, NULL);
@@ -213,4 +213,4 @@ Note that \fIFunTableRowGet()\fR also can be called as \fIFunEventsGet()\fR, for
 backward compatibility.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

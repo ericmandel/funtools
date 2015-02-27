@@ -131,29 +131,29 @@
 .IX Title "funcnts 1"
 .TH funcnts 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfuncnts \- count photons in specified regions, with bkgd subtraction\fR
+funcnts \- count photons in specified regions, with bkgd subtraction
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funcnts  [switches] <source_file> [source_region] [bkgd_file] [bkgd_region|bkgd_value]
+\&\fBfuncnts\fR  [switches] <source_file> [source_region] [bkgd_file] [bkgd_region|bkgd_value]
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 16
-\&  -e "source_exposure[;bkgd_exposure]"
+\&  \-e "source_exposure[;bkgd_exposure]"
 \&                # source (bkgd) FITS exposure image using matching files
-\&  -w "source_exposure[;bkgd_exposure]"
+\&  \-w "source_exposure[;bkgd_exposure]"
 \&                # source (bkgd) FITS exposure image using WCS transform
-\&  -t "source_timecorr[;bkgd_timecorr]"
+\&  \-t "source_timecorr[;bkgd_timecorr]"
 \&                # source (bkgd) time correction value or header parameter name
-\&  -g            # output using nice g format
-\&  -G            # output using %.14g format (maximum precision)
-\&  -i "[column;]int1;int2..." # column-based intervals
-\&  -m            # match individual source and bkgd regions
-\&  -p            # output in pixels, even if wcs is present
-\&  -r            # output inner/outer radii (and angles) for annuli (and pandas)
-\&  -s            # output summed values
-\&  -v "scol[;bcol]" # src and bkgd value columns for tables
-\&  -T            # output in starbase/rdb format
-\&  -z            # output regions with zero area
+\&  \-g            # output using nice g format
+\&  \-G            # output using %.14g format (maximum precision)
+\&  \-i "[column;]int1;int2..." # column-based intervals
+\&  \-m            # match individual source and bkgd regions
+\&  \-p            # output in pixels, even if wcs is present
+\&  \-r            # output inner/outer radii (and angles) for annuli (and pandas)
+\&  \-s            # output summed values
+\&  \-v "scol[;bcol]" # src and bkgd value columns for tables
+\&  \-T            # output in starbase/rdb format
+\&  \-z            # output regions with zero area
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -280,7 +280,7 @@ for further analysis:
 .Ve
 .PP
 .Vb 2
-\&  [sh] sed -f funcnts.sed funcnts.out
+\&  [sh] sed \-f funcnts.sed funcnts.out
 \&  1     3826.403    66.465      555.597     5.972  96831.98     0.040     0.001
 .Ve
 .PP
@@ -362,7 +362,7 @@ Using the \fB\-m\fR switch causes \fBfuncnts\fR to use each of the two
 background regions independently with each of the two source regions:
 .PP
 .Vb 10
-\&  [sh] funcnts -m snr.ev "annulus(502,512,0,22,n=2)" "ann(502,512,50,100,n=2)"
+\&  [sh] funcnts \-m snr.ev "annulus(502,512,0,22,n=2)" "ann(502,512,50,100,n=2)"
 \&  # source
 \&  #   data file:        snr.ev
 \&  #   degrees/pix:      0.00222222
@@ -422,7 +422,7 @@ angles) for each separate region. The \fB\-r\fR switch will add radii
 and angle columns to the output table:
 .PP
 .Vb 12
-\&  [sh] funcnts -r snr.ev "annulus(502,512,0,22,n=2)" "ann(502,512,50,100,n=2)"
+\&  [sh] funcnts \-r snr.ev "annulus(502,512,0,22,n=2)" "ann(502,512,50,100,n=2)"
 \&  # source
 \&  #   data file:        snr.ev
 \&  #   degrees/pix:      0.00222222
@@ -518,7 +518,7 @@ above). A simplified version of this script is shown below:
 \&        exit
 \&      }
 \&    }
-\&    ' | gnuplot -persist - 1>/dev/null 2>&1
+\&    ' | gnuplot \-persist - 1>/dev/null 2>&1
 .Ve
 .PP
 .Vb 34
@@ -553,7 +553,7 @@ above). A simplified version of this script is shown below:
 \&    }
 \&    '
 \&  else
-\&    echo "funcnts -r ... | funcnts.plot [ds9|gnuplot]"
+\&    echo "funcnts \-r ... | funcnts.plot [ds9|gnuplot]"
 \&    exit 1
 \&  fi
 .Ve
@@ -562,7 +562,7 @@ Thus, to run \fBfuncnts\fR and plot the results using gnuplot (version 3.7
 or above), use:
 .PP
 .Vb 1
-\&  funcnts -r snr.ev "annulus(502,512,0,50,n=5)" ...  | funcnts.plot gnuplot
+\&  funcnts \-r snr.ev "annulus(502,512,0,50,n=5)" ...  | funcnts.plot gnuplot
 .Ve
 .PP
 The \fB\-s\fR (sum) switch causes \fBfuncnts\fR to produce an
@@ -570,7 +570,7 @@ additional table of summed (integrated) background subtracted values,
 along with the default table of individual values:
 .PP
 .Vb 10
-\&  [sh] funcnts -s snr.ev "annulus(502,512,0,50,n=5)" "annulus(502,512,50,100)"
+\&  [sh] funcnts \-s snr.ev "annulus(502,512,0,50,n=5)" "annulus(502,512,50,100)"
 \&  # source
 \&  #   data file:        snr.ev
 \&  #   degrees/pix:      0.00222222
@@ -701,8 +701,8 @@ either be a numeric constant or the name of a header parameter in
 the source (or background) file:
 .PP
 .Vb 2
-\&  [sh] funcnts -t 23.4 ...            # number for source
-\&  [sh] funcnts -t "LIVETIME;23.4" ... # param for source, numeric for bkgd
+\&  [sh] funcnts \-t 23.4 ...            # number for source
+\&  [sh] funcnts \-t "LIVETIME;23.4" ... # param for source, numeric for bkgd
 .Ve
 .PP
 When a time correction is specified, it is applied to the net counts
@@ -724,7 +724,7 @@ Two formats are supported for interval specification. The most general
 format is semi-colon-delimited list of filters to be used as intervals:
 .PP
 .Vb 1
-\&  funcnts -i "pha=1:5;pha=6:10;pha=11:15" snr.ev "circle(502,512,22)" ...
+\&  funcnts \-i "pha=1:5;pha=6:10;pha=11:15" snr.ev "circle(502,512,22)" ...
 .Ve
 .PP
 Conceptually, this will be equivalent to running \fBfuncnts\fR three times:
@@ -741,7 +741,7 @@ the data.
 Note that complex filters can be used to specify intervals:
 .PP
 .Vb 1
-\&  funcnts -i "pha=1:5&&pi=4;pha=6:10&&pi=5;pha=11:15&&pi=6" snr.ev ...
+\&  funcnts \-i "pha=1:5&&pi=4;pha=6:10&&pi=5;pha=11:15&&pi=6" snr.ev ...
 .Ve
 .PP
 The program simply runs the data through each filter in turn and generates
@@ -752,7 +752,7 @@ the specified filters do not have to be intervals at all. Nor does one
 \&\*(L"interval\*(R" filter have to be related to another. For example:
 .PP
 .Vb 1
-\&  funcnts -i "pha=1:5;pi=6:10;energy=11:15" snr.ev "circle(502,512,22)" ...
+\&  funcnts \-i "pha=1:5;pi=6:10;energy=11:15" snr.ev "circle(502,512,22)" ...
 .Ve
 .PP
 is equivalent to running \fBfuncnts\fR three times with unrelated filter
@@ -764,7 +764,7 @@ that column. In this format, a column name is specified first,
 followed by intervals:
 .PP
 .Vb 1
-\&  funcnts -i "pha;1:5;6:10;11:15" snr.ev "circle(502,512,22)" ...
+\&  funcnts \-i "pha;1:5;6:10;11:15" snr.ev "circle(502,512,22)" ...
 .Ve
 .PP
 This is equivalent to the first example, but requires less typing. The
@@ -803,4 +803,4 @@ For more information about these difference, see the discussion of
 Region Boundaries.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

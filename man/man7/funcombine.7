@@ -128,54 +128,121 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "regdiff n"
-.TH regdiff n "April 14, 2011" "version 1.4.5" "SAORD Documentation"
+.IX Title "funcombine 7"
+.TH funcombine 7 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBRegDiff:Differences Between Funtools and IRAF Regions\fR
+FunCombine \- Combining Region and Table Filters
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-Describes the differences between Funtools/ds9 regions and the old \s-1IRAF/PROS\s0
-regions.
+This document discusses the conventions for combining region and table
+filters, especially with regards to the comma operator.
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
-We have tried to make Funtools regions compatible with their
-predecessor, \s-1IRAF/PROS\s0 regions. For simple regions and simple boolean
-algebra between regions, there should be no difference between the two
-implementations.  The following is a list of differences and
-incompatibilities between the two:
-.IP "\(bu" 4
-If a pixel is covered by two different regions expressions,
-Funtools assigns the mask value of the \fBfirst\fR region that
-contains that pixel.  That is, successive regions \fBdo not\fR
-overwrite previous regions in the mask, as was the case with the
-original \s-1PROS\s0 regions.  This means that one must define overlapping
-regions in the reverse order in which they were defined in \s-1PROS\s0.  If
-region N is fully contained within region M, then N should be defined
-\&\fBbefore\fR M, or else it will be \*(L"covered up\*(R" by the latter. This
-change is necessitated by the use of optimized filter compilation, i.e.,
-Funtools only tests individual regions until a proper match is made.
-.IP "\(bu" 4
-The \fB\s-1PANDA\s0\fR region has replaced the old \s-1PROS\s0 syntax in which
-a \fB\s-1PIE\s0\fR accelerator was combined with an \fB\s-1ANNULUS\s0\fR accelerator
-using \fB\s-1AND\s0\fR. That is,
-.Sp
+\&\fBComma Conventions\fR
+.PP
+Filter specifications consist of a series of boolean expressions,
+separated by commas. These expressions can be table filters,
+spatial region filters, or combinations thereof. Unfortunately,
+common usage requires that the comma operator must act differently
+in different situations. Therefore, while its use is intuitive in
+most cases, commas can be a source of confusion.
+.PP
+According to long-standing usage in \s-1IRAF\s0, when a comma separates two
+table filters, it takes on the meaning of a boolean \fBand\fR. Thus:
+.PP
 .Vb 1
-\&  ANNULUS(20,20,0,15,n=4) & PIE(20,20,0,360,n=3)
+\&  foo.fits[pha==1,pi==2]
 .Ve
-.Sp
-has been replaced by:
-.Sp
+.PP
+is equivalent to:
+.PP
 .Vb 1
-\&  PANDA(20,20,0,360,3,0,15,4)
+\&  foo.fits[pha==1 && pi==2]
 .Ve
-.Sp
-The \s-1PROS\s0 syntax was inconsistent with the meaning of the \fB\s-1AND\s0\fR operator.
+.PP
+When a comma separates two spatial region filters, however, it has
+traditionally taken on the meaning of a boolean \fBor\fR. Thus:
+.PP
+.Vb 1
+\&  foo.fits[circle(10,10,3),ellipse(20,20,8,5)]
+.Ve
+.PP
+is equivalent to:
+.PP
+.Vb 1
+\&  foo.fits[circle(10,10,3) || ellipse(20,20,8,5)]
+.Ve
+.PP
+(except that in the former case, each region is given a unique id
+in programs such as funcnts).
+.PP
+Region and table filters can be combined:
+.PP
+.Vb 1
+\&  foo.fits[circle(10,10,3),pi=1:5]
+.Ve
+.PP
+or even:
+.PP
+.Vb 1
+\&  foo.fits[pha==1&&circle(10,10,3),pi==2&&ellipse(20,20,8,5)]
+.Ve
+.PP
+In these cases, it is not obvious whether the command should utilize an
+\&\fBor\fR or \fBand\fR operator. We therefore arbitrarily chose to
+implement the following rule:
 .IP "\(bu" 4
-The meaning of pure numbers (i.e., without format specifiers) in 
-regions has been clarified, as has the syntax for specifying coordinate
-systems. See the general discussion on
-Spatial Region Filtering
-for more information.
+if both expressions contain a region, the operator used is \fBor\fR.
+.IP "\(bu" 4
+if one (or both) expression(s) does not contain a region, the operator
+used is \fBand\fR.
+.PP
+This rule handles the cases of pure regions and pure column filters properly.
+It unambiguously assigns the boolean \fBand\fR to all mixed cases. Thus:
+.PP
+.Vb 1
+\&  foo.fits[circle(10,10,3),pi=1:5]
+.Ve
+.PP
+and
+.PP
+.Vb 1
+\&  foo.fits[pi=1:5,circle(10,10,3)]
+.Ve
+.PP
+both are equivalent to:
+.PP
+.Vb 1
+\&  foo.fits[circle(10,10,3) && pi=1:5]
+.Ve
+.PP
+[\s-1NB:\s0 This arbitrary rule \fBreplaces the previous arbitrary rule\fR
+(pre\-funtools 1.2.3) which stated:
+.IP "\(bu" 4
+if the 2nd expression contains a region, the operator used is \fBor\fR.
+.IP "\(bu" 4
+if the 2nd expression does not contain a region, the operator
+used is \fBand\fR.
+.PP
+In that scenario, the \fBor\fR operator was implied by:
+.PP
+.Vb 1
+\&  pha==4,circle 5 5 1
+.Ve
+.PP
+while the \fBand\fR operator was implied by
+.PP
+.Vb 1
+\&  circle 5 5 1,pha==4
+.Ve
+.PP
+Experience showed that this non-commutative treatment of the comma
+operator was confusing and led to unexpected results.]
+.PP
+The comma rule must be considered provisional: comments and complaints
+are welcome to help clarify the matter. Better still, we recommend
+that the comma operator be avoided in such cases in favor of an
+explicit boolean operator.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

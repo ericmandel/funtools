@@ -131,20 +131,20 @@
 .IX Title "funindex 1"
 .TH funindex 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfunindex \- create an index for a column of a FITS binary table\fR
+funindex \- create an index for a column of a FITS binary table
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funindex <switches>  <iname> <key> [oname]
+\&\fBfunindex\fR <switches>  <iname> <key> [oname]
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 7
 \&  NB: these options are not compatible with Funtools processing. Please
 \&  use the defaults instead.
-\&  -c        # compress output using gzip"
-\&  -a        # ASCII output, ignore -c (default: FITS table)"
-\&  -f        # FITS table output (default: FITS table)"
-\&  -l        # long output, i.e. with key value(s) (default: long)"
-\&  -s        # short output, i.e. no key value(s) (default: long)"
+\&  \-c        # compress output using gzip"
+\&  \-a        # ASCII output, ignore \-c (default: FITS table)"
+\&  \-f        # FITS table output (default: FITS table)"
+\&  \-l        # long output, i.e. with key value(s) (default: long)"
+\&  \-s        # short output, i.e. no key value(s) (default: long)"
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -176,4 +176,4 @@ This will generate an index named foo_y.idx, which will be used by funtools
 for filters involving the Y column.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

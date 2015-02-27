@@ -131,24 +131,24 @@
 .IX Title "funjoin 1"
 .TH funjoin 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfunjoin \- join two or more FITS binary tables on specified columns\fR
+funjoin \- join two or more FITS binary tables on specified columns
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funjoin [switches] <ifile1> <ifile2> ... <ifilen> <ofile> 
+\&\fBfunjoin\fR [switches] <ifile1> <ifile2> ... <ifilen> <ofile> 
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 11
-\&  -a  cols             # columns to activate in all files
-\&  -a1 cols ... an cols # columns to activate in each file
-\&  -b  'c1:bvl,c2:bv2'  # blank values for common columns in all files
-\&  -bn 'c1:bv1,c2:bv2'  # blank values for columns in specific files
-\&  -j  col              # column to join in all files
-\&  -j1 col ... jn col   # column to join in each file
-\&  -m min               # min matches to output a row
-\&  -M max               # max matches to output a row
-\&  -s                   # add 'jfiles' status column
-\&  -S col               # add col as status column
-\&  -t tol               # tolerance for joining numeric cols [2 files only]
+\&  \-a  cols             # columns to activate in all files
+\&  \-a1 cols ... an cols # columns to activate in each file
+\&  \-b  'c1:bvl,c2:bv2'  # blank values for common columns in all files
+\&  \-bn 'c1:bv1,c2:bv2'  # blank values for columns in specific files
+\&  \-j  col              # column to join in all files
+\&  \-j1 col ... jn col   # column to join in each file
+\&  \-m min               # min matches to output a row
+\&  \-M max               # max matches to output a row
+\&  \-s                   # add 'jfiles' status column
+\&  \-S col               # add col as status column
+\&  \-t tol               # tolerance for joining numeric cols [2 files only]
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -179,13 +179,13 @@ columns in a given join.  For example, to join three files using the
 same key column for each file, use:
 .PP
 .Vb 1
-\&  funjoin -j key in1.fits in2.fits in3.fits out.fits
+\&  funjoin \-j key in1.fits in2.fits in3.fits out.fits
 .Ve
 .PP
 A different key can be specified for the third file in this way:
 .PP
 .Vb 1
-\&  funjoin -j key -j3 otherkey in1.fits in2.fits in3.fits out.fits
+\&  funjoin \-j key \-j3 otherkey in1.fits in2.fits in3.fits out.fits
 .Ve
 .PP
 The \fB\-a \*(L"cols\*(R"\fR switch (and \fB\-a1 \*(L"col1\*(R"\fR,
@@ -205,7 +205,7 @@ For example, to write out only those rows in which exactly two files
 have columns that match (i.e. one join):
 .PP
 .Vb 1
-\&  funjoin -j key -m 1 -M 1 in1.fits in2.fits in3.fits ... out.fits
+\&  funjoin \-j key \-m 1 \-M 1 in1.fits in2.fits in3.fits ... out.fits
 .Ve
 .PP
 A given row can have the requisite number of joins without all of the
@@ -213,7 +213,7 @@ files being joined (e.g. three files are being joined but only two
 have a given join key value). In this case, all of the columns of the
 non-joined file are written out, by default, using blanks (zeros or NULLs).
 The \fB\-b c1:bv1,c2:bv2\fR and
-\&\fB\-b1 'c1:bv1,c2:bv2' \-b2 'c1:bv1,c2:bv2' ...\fR
+\-b1 'c1:bv1,c2:bv2' \-b2 'c1:bv1,c2 - bv2' ...
 switches can be used to set the blank value for columns common to all
 files and/or columns in a specified file, respectively. Each blank value
 string contains a comma-separated list of column:blank_val specifiers.
@@ -222,7 +222,7 @@ value of \*(L"nan\*(R" means that the \s-1IEEE\s0 NaN (not\-a\-number) should be
 used. Thus, for example:
 .PP
 .Vb 1
-\&  funjoin -b "AKEY:???" -b1 "A:-1" -b3 "G:NaN,E:-1,F:-100" ...
+\&  funjoin \-b "AKEY:???" \-b1 "A:-1" \-b3 "G:NaN,E:-1,F:-100" ...
 .Ve
 .PP
 means that a non-joined \s-1AKEY\s0 column in any file will contain the
@@ -296,9 +296,9 @@ fundisp t3.fits
 Given these input files, the following funjoin command:
 .PP
 .Vb 3
-\&  funjoin -s -a1 "-B" -a2 "-D" -a3 "-E" -b \e
-\&  "AKEY:???" -b1 "AKEY:XXX,A:255" -b3 "G:NaN,E:-1,F:-100" \e
-\&  -j key t1.fits t2.fits t3.fits foo.fits
+\&  funjoin \-s \-a1 "\-B" \-a2 "\-D" \-a3 "\-E" \-b \e
+\&  "AKEY:???" \-b1 "AKEY:XXX,A:255" \-b3 "G:NaN,E:-1,F:-100" \e
+\&  \-j key t1.fits t2.fits t3.fits foo.fits
 .Ve
 .PP
 will join the files on the \s-1KEY\s0 column, outputting all columns except B
@@ -311,16 +311,16 @@ flag which files were used in each row:
 \&        AKEY    KEY      A       AKEY_2  KEY_2      C       AKEY_3  KEY_3        F           G   JFILES
 \&  ------------ ------ ------ ------------ ------ ------ ------------ ------ -------- ----------- --------
 \&         aaa      0      0          aaa      0      0          aaa      0        1      300.30        7
-\&         bbb      1      3          ???      0      0          ???      0     -100         nan        1
-\&         ccc      2      6          ccc      2      6          ???      0     -100         nan        3
+\&         bbb      1      3          ???      0      0          ???      0     \-100         nan        1
+\&         ccc      2      6          ccc      2      6          ???      0     \-100         nan        3
 \&         ddd      3      9          ???      0      0          ddd      3       10      400.40        5
-\&         eee      4     12          eee      4     12          ???      0     -100         nan        3
-\&         fff      5     15          ???      0      0          ???      0     -100         nan        1
+\&         eee      4     12          eee      4     12          ???      0     \-100         nan        3
+\&         fff      5     15          ???      0      0          ???      0     \-100         nan        1
 \&         ggg      6     18          ggg      6     18          ggg      6       19      100.10        7
-\&         hhh      7     21          ???      0      0          ???      0     -100         nan        1
-\&         XXX      0    255          iii      8     24          ???      0     -100         nan        2
+\&         hhh      7     21          ???      0      0          ???      0     \-100         nan        1
+\&         XXX      0    255          iii      8     24          ???      0     \-100         nan        2
 \&         XXX      0    255          ???      0      0          jjj      9       28      200.20        4
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

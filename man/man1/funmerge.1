@@ -131,16 +131,16 @@
 .IX Title "funmerge 1"
 .TH funmerge 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfunmerge \- merge one or more Funtools table files\fR
+funmerge \- merge one or more Funtools table files
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funmerge  [\-w|\-x] \-f [colname] <iname1> <iname2>  ... <oname>
+\&\fBfunmerge\fR  [\-w|\-x] \-f [colname] <iname1> <iname2>  ... <oname>
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 3
-\&  -f    # output a column specifying file from which this event came
-\&  -w    # adjust position values using WCS info
-\&  -x    # adjust position values using WCS info and save old values
+\&  \-f    # output a column specifying file from which this event came
+\&  \-w    # adjust position values using WCS info
+\&  \-x    # adjust position values using WCS info and save old values
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -198,18 +198,18 @@ each row in the column called \*(L"\s-1FILE\s0\*(R" (along with the correspondin
 file name in the header):
 .PP
 .Vb 1
-\&  [sh] funmerge -f "FILE" test.ev test2.ev merge.ev
+\&  [sh] funmerge \-f "FILE" test.ev test2.ev merge.ev
 .Ve
 .PP
 Merge two tables with \s-1WCS\s0 alignment, saving the old position values in
 2 additional columns:
 .PP
 .Vb 1
-\&  [sh] funmerge -x test.ev test2.ev merge.ev
+\&  [sh] funmerge \-x test.ev test2.ev merge.ev
 .Ve
 .PP
 This program only works on raw event files and binary tables. We have
 not yet implemented image and array merging.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

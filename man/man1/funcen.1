@@ -131,17 +131,17 @@
 .IX Title "funcen 1"
 .TH funcen 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfuncen \- find centroid (for binary tables)\fR
+funcen \- find centroid (for binary tables)
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funcen [\-i] [\-n iter] [\-t tol] [\-v lev] <iname> <region>
+\&\fBfuncen\fR [\-i] [\-n iter] [\-t tol] [\-v lev] <iname> <region>
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 4
-\&  -i            # use image filtering (default: event filtering)
-\&  -n iter       # max number of iterations (default: 0)
-\&  -t tol        # pixel tolerance distance (default: 1.0)
-\&  -v [0,1,2,3]  # output verbosity level (default: 0)
+\&  \-i            # use image filtering (default: event filtering)
+\&  \-n iter       # max number of iterations (default: 0)
+\&  \-t tol        # pixel tolerance distance (default: 1.0)
+\&  \-v [0,1,2,3]  # output verbosity level (default: 0)
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -190,12 +190,12 @@ The last 3 \s-1WCS\s0 values are output if \s-1WCS\s0 information is available i
 data file header. Thus, for example:
 .PP
 .Vb 2
-\&  [sh] funcen -n 0 snr.ev "cir 505 508 5"
+\&  [sh] funcen \-n 0 snr.ev "cir 505 508 5"
 \&  915 505.00 508.00 345.284038 58.870920 j2000
 .Ve
 .PP
 .Vb 2
-\&  [sh] funcen -n 3 snr.ev "cir 505 508 5"
+\&  [sh] funcen \-n 3 snr.ev "cir 505 508 5"
 \&  1120 504.43 509.65 345.286480 58.874587 j2000
 .Ve
 .PP
@@ -208,7 +208,7 @@ level 1, the output essentially contains the same information as level
 0, but with keyword formatting:
 .PP
 .Vb 5
-\&  [sh] funcen -v 1 -n 3 snr.ev "cir 505 508 5"
+\&  [sh] funcen \-v 1 \-n 3 snr.ev "cir 505 508 5"
 \&  event_file:     snr.ev
 \&  initial_region: cir 505 508 5
 \&  tolerance:      1.0000
@@ -239,7 +239,7 @@ give different results because of how boundary events are processed:
 .Ve
 .PP
 .Vb 2
-\&  [sh] funcen -i snr.ev "cir 505 508 5"
+\&  [sh] funcen \-i snr.ev "cir 505 508 5"
 \&  798 505.00 508.00 345.284038 58.870920 j2000
 .Ve
 .PP
@@ -247,4 +247,4 @@ See Region Boundaries for more information
 about how boundaries are calculated using these two methods.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

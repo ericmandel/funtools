@@ -131,18 +131,18 @@
 .IX Title "funimage 1"
 .TH funimage 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfunimage \- create a FITS image from a Funtools data file\fR
+funimage \- create a FITS image from a Funtools data file
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funimage [\-a] <iname> <oname> [bitpix=n]
-funimage [\-l] <iname> <oname> <xcol:xdims> <ycol:ydims> <vcol> [bitpix=n]
-funimage [\-p x|y] <iname> <oname> [bitpix=n]
+\&\fBfunimage\fR [\-a] <iname> <oname> [bitpix=n]
+\&\fBfunimage\fR [\-l] <iname> <oname> <xcol:xdims> <ycol:ydims> <vcol> [bitpix=n]
+\&\fBfunimage\fR [\-p x|y] <iname> <oname> [bitpix=n]
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 3
-\&  -a       # append to existing output file as an image extension
-\&  -l       # input is a list file containing xcol, ycol, value
-\&  -p [x|y] # project along x or y axis to create a 1D image
+\&  \-a       # append to existing output file as an image extension
+\&  \-l       # input is a list file containing xcol, ycol, value
+\&  \-p [x|y] # project along x or y axis to create a 1D image
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -243,7 +243,7 @@ In particular, the min value should be used whenever the
 minimum coordinate value is something other than one. For example:
 .PP
 .Vb 1
-\&  funimage -l foo.lst foo.fits xcol:0:512 ycol:0:512 value bitpix=-32
+\&  funimage \-l foo.lst foo.fits xcol:0:512 ycol:0:512 value bitpix=-32
 .Ve
 .PP
 The list feature also can be used to read unnamed columns from standard
@@ -251,7 +251,7 @@ input: simply replace the column name with a null string. Note
 that the dimension information is still required:
 .PP
 .Vb 5
-\&  funimage -l stdin foo.fits "":0:512 "":0:512 "" bitpix=-32
+\&  funimage \-l stdin foo.fits "":0:512 "":0:512 "" bitpix=-32
 \&  240 250 1
 \&  255 256 2
 \&  ...
@@ -270,7 +270,7 @@ example, consider the following text file (called foo.txt):
 \&  0         0
 .Ve
 .PP
-This text file defines two columns, x and y, each of data type 32\-bit int and
+This text file defines two columns, x and y, each of data type 32-bit int and
 image dimension 10. The command:
 .PP
 .Vb 1
@@ -380,14 +380,14 @@ A projection along the y axis can be performed on either the table or
 the image:
 .PP
 .Vb 4
-\&  funimage -p y ev.fits stdout | fundisp stdin
+\&  funimage \-p y ev.fits stdout | fundisp stdin
 \&              1          2          3          4          5
 \&     ---------- ---------- ---------- ---------- ----------
 \&  1:          1          2          3          4          5
 .Ve
 .PP
 .Vb 4
-\&  funimage -p y dim2.fits stdout | fundisp stdin
+\&  funimage \-p y dim2.fits stdout | fundisp stdin
 \&              1          2          3          4          5
 \&     ---------- ---------- ---------- ---------- ----------
 \&  1:          1          2          3          4          5
@@ -425,4 +425,4 @@ Display the \s-1FITS\s0 image generated from a blocked section of \s-1FITS\s0 bi
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages
