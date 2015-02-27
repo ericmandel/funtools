@@ -128,10 +128,10 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "funfiles n"
-.TH funfiles n "April 14, 2011" "version 1.4.5" "SAORD Documentation"
+.IX Title "funfiles 7"
+.TH funfiles 7 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunFiles: Funtools Data Files\fR
+FunFiles \- Funtools Data Files
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 This document describes the data file formats (\s-1FITS\s0, array, raw
@@ -247,21 +247,21 @@ record:
 Data types follow standard conventions for \s-1FITS\s0 binary tables, but include
 two extra unsigned types ('U' and 'V'):
 .IP "\(bu" 4
-\&\fBB\fR \*(-- unsigned 8\-bit char
+\&\fBB\fR \*(-- unsigned 8-bit char
 .IP "\(bu" 4
-\&\fBI\fR \*(-- signed 16\-bit int
+\&\fBI\fR \*(-- signed 16-bit int
 .IP "\(bu" 4
-\&\fBJ\fR \*(-- signed 32\-bit int
+\&\fBJ\fR \*(-- signed 32-bit int
 .IP "\(bu" 4
-\&\fBK\fR \*(-- signed 64\-bit int
+\&\fBK\fR \*(-- signed 64-bit int
 .IP "\(bu" 4
-\&\fBE\fR \*(-- 32\-bit float
+\&\fBE\fR \*(-- 32-bit float
 .IP "\(bu" 4
-\&\fBD\fR \*(-- 64\-bit float
+\&\fBD\fR \*(-- 64-bit float
 .IP "\(bu" 4
-\&\fBU\fR \*(-- unsigned 16\-bit int
+\&\fBU\fR \*(-- unsigned 16-bit int
 .IP "\(bu" 4
-\&\fBV\fR \*(-- unsigned 32\-bit int
+\&\fBV\fR \*(-- unsigned 32-bit int
 .PP
 An optional integer value \fBn\fR can be prefixed to the type to indicate
 that the element is an array of n values. For example:
@@ -270,7 +270,7 @@ that the element is an array of n values. For example:
 \&  foo.fits[EVENTS(x:I,y:I,status:4J)]
 .Ve
 .PP
-defines x and y as 16\-bit ints and status as an array of 4 32\-bit ints.
+defines x and y as 16-bit ints and status as an array of 4 32-bit ints.
 .PP
 Furthermore, image dimensions can be attached to the event specification
 in order to tell Funtools how to bin the events into an image. They
@@ -376,17 +376,17 @@ where array-spec is of the form:
 .PP
 and where [type] is:
 .IP "\(bu" 4
-b   (8\-bit unsigned char)
+b   (8-bit unsigned char)
 .IP "\(bu" 4
-s   (16\-bit short int)
+s   (16-bit short int)
 .IP "\(bu" 4
-u   (16\-bit unsigned short int)
+u   (16-bit unsigned short int)
 .IP "\(bu" 4
-i   (32\-bit int)
+i   (32-bit int)
 .IP "\(bu" 4
-r,f (32\-bit float)
+r,f (32-bit float)
 .IP "\(bu" 4
-d   (64\-bit float)
+d   (64-bit float)
 .PP
 The dim1 specification is required, but dim2 is optional and defaults
 to dim1.  The skip specification is optional and defaults to 0.  The
@@ -799,4 +799,4 @@ in a filter, enclose the file specification in quotes:
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

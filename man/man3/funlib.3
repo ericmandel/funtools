@@ -131,7 +131,7 @@
 .IX Title "funlib 3"
 .TH funlib 3 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunLib: the Funtools Programming Interface\fR
+FunLib \- the Funtools Programming Interface
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 A description of the Funtools library.
@@ -180,19 +180,19 @@ on your system:
 For example, on a Solaris system using gcc, use the following link line:
 .PP
 .Vb 1
-\&  gcc -o foo foo.c -lfuntools -lsocket -lnsl -ldl -lm
+\&  gcc \-o foo foo.c \-lfuntools \-lsocket \-lnsl \-ldl \-lm
 .Ve
 .PP
 On a Solaris system using Solaris cc, use the following link line:
 .PP
 .Vb 1
-\&  gcc -o foo foo.c -lfuntools -lsocket -lnsl -lm
+\&  gcc \-o foo foo.c \-lfuntools \-lsocket \-lnsl \-lm
 .Ve
 .PP
 On a Linux system using gcc, use the following link line:
 .PP
 .Vb 1
-\&  gcc -o foo foo.c -lfuntools -ldl -lm
+\&  gcc \-o foo foo.c \-lfuntools \-ldl \-lm
 .Ve
 .PP
 Once configure has built a Makefile on your platform, the required
@@ -202,7 +202,7 @@ Linux you will find:
 .PP
 .Vb 3
 \&  grep EXTRA_LIBS Makefile
-\&  EXTRA_LIBS      =  -ldl
+\&  EXTRA_LIBS      =  \-ldl
 \&  ...
 .Ve
 .PP
@@ -279,7 +279,7 @@ Finally, you can write the resulting image to disk using
 \&\fIFunImagePut()\fR:
 .PP
 .Vb 1
-\&  FunImagePut(fun2, buf, dim1, dim2, -32, NULL);
+\&  FunImagePut(fun2, buf, dim1, dim2, \-32, NULL);
 .Ve
 .PP
 Note that Funtools automatically takes care of book-keeping tasks such as
@@ -375,7 +375,7 @@ math library (and the dynamic load library, if the latter is available
 on your system):
 .PP
 .Vb 1
-\&  gcc -o foo foo.c -lfuntools -ldl -lm
+\&  gcc \-o foo foo.c \-lfuntools \-ldl \-lm
 .Ve
 .PP
 If gcc is used, Funtools filtering can be performed using dynamically
@@ -522,4 +522,4 @@ void FunFlush(Fun fun, char *plist)
 void FunClose(Fun fun)
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

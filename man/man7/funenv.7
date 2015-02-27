@@ -128,10 +128,10 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "funenv n"
-.TH funenv n "April 14, 2011" "version 1.4.5" "SAORD Documentation"
+.IX Title "funenv 7"
+.TH funenv 7 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunEnv: Funtools Environment Variables\fR
+FunEnv \- Funtools Environment Variables
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 Describes the environment variables which can be used to tailor the overall
@@ -204,7 +204,7 @@ of each environment variable is one of the standard \s-1FITS\s0 bitpix values
 create a floating array, then use:
 .Sp
 .Vb 1
-\&  setenv FITS_BITPIX -32
+\&  setenv FITS_BITPIX \-32
 .Ve
 .Sp
 in preference to adding a bitpix specification to each filename:
@@ -349,4 +349,4 @@ but care should be taken to reset its value to false when debugging is
 complete.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

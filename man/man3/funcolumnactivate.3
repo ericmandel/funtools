@@ -131,7 +131,7 @@
 .IX Title "funcolumnactivate 3"
 .TH funcolumnactivate 3 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunColumnActivate \- activate Funtools columns\fR
+FunColumnActivate \- activate Funtools columns
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 .Vb 1
@@ -244,7 +244,7 @@ select columns in one command. For example, consider the following:
 .PP
 .Vb 9
 \&  # reorder and de-activate
-\&  fundisp snr.ev'[cir 512 512 .1]' "time pi pha + -x -y"
+\&  fundisp snr.ev'[cir 512 512 .1]' "time pi pha + \-x \-y"
 \&                   TIME       PI      PHA       DX       DY
 \&  --------------------- -------- -------- -------- --------
 \&      79493997.45854475        7        6      578      574
@@ -260,7 +260,7 @@ Note that this is different from:
 .PP
 .Vb 9
 \&  # probably not what you want ...
-\&  fundisp snr.ev'[cir 512 512 .1]' "time pi pha -x -y +"
+\&  fundisp snr.ev'[cir 512 512 .1]' "time pi pha \-x \-y +"
 \&                   TIME       PI      PHA        Y        X       DX       DY
 \&  --------------------- -------- -------- -------- -------- -------- --------
 \&      79493997.45854475        7        6      512      512      578      574
@@ -307,7 +307,7 @@ activated (i.e., in this case, written to the new file).  For example:
 will process only the three columns mentioned, while:
 .PP
 .Vb 1
-\&  funtable test.ev foo.ev "-time"
+\&  funtable test.ev foo.ev "\-time"
 .Ve
 .PP
 will process all columns except \*(L"time\*(R".
@@ -327,4 +327,4 @@ of calling it this way:
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

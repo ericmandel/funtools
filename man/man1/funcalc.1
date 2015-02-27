@@ -131,20 +131,20 @@
 .IX Title "funcalc 1"
 .TH funcalc 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfuncalc \- Funtools calculator (for binary tables)\fR
+funcalc \- Funtools calculator (for binary tables)
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funcalc [\-n] [\-a argstr] [\-e expr] [\-f file] [\-l link] [\-p prog] <iname> [oname [columns]]
+\&\fBfuncalc\fR [\-n] [\-a argstr] [\-e expr] [\-f file] [\-l link] [\-p prog] <iname> [oname [columns]]
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 7
-\&  -a argstr    # user arguments to pass to the compiled program
-\&  -e expr      # funcalc expression
-\&  -f file      # file containing funcalc expression
-\&  -l libs      # libs to add to link command  
-\&  -n           # output generated code instead of compiling and executing
-\&  -p prog      # generate named program, no execution
-\&  -u           # die if any variable is undeclared (don't auto-declare)
+\&  \-a argstr    # user arguments to pass to the compiled program
+\&  \-e expr      # funcalc expression
+\&  \-f file      # file containing funcalc expression
+\&  \-l libs      # libs to add to link command
+\&  \-n           # output generated code instead of compiling and executing
+\&  \-p prog      # generate named program, no execution
+\&  \-u           # die if any variable is undeclared (don't auto-declare)
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -203,7 +203,7 @@ or:
 When this expression is executed using a command such as:
 .PP
 .Vb 1
-\&  funcalc -f swap.expr itest.ev otest.ev
+\&  funcalc \-f swap.expr itest.ev otest.ev
 .Ve
 .PP
 the resulting file will have values of the x and y columns swapped.
@@ -225,19 +225,19 @@ columns using \s-1TFORM:\s0
 .IP "\(bu" 4
 A: \s-1ASCII\s0 characters
 .IP "\(bu" 4
-B: unsigned 8\-bit char
+B: unsigned 8-bit char
 .IP "\(bu" 4
-I: signed 16\-bit int
+I: signed 16-bit int
 .IP "\(bu" 4
-U: unsigned 16\-bit int (not standard \s-1FITS\s0)
+U: unsigned 16-bit int (not standard \s-1FITS\s0)
 .IP "\(bu" 4
-J: signed 32\-bit int
+J: signed 32-bit int
 .IP "\(bu" 4
-V: unsigned 32\-bit int (not standard \s-1FITS\s0)
+V: unsigned 32-bit int (not standard \s-1FITS\s0)
 .IP "\(bu" 4
-E: 32\-bit float
+E: 32-bit float
 .IP "\(bu" 4
-D: 64\-bit float
+D: 64-bit float
 .IP "\(bu" 4
 X: bits (treated as an array of chars)
 .PP
@@ -313,14 +313,14 @@ column array:
 .PP
 The 'X' (bits) data type is treated as a char array of dimension
 (numeric_count/8), i.e., 16X is processed as a 2\-byte char array. Each
-8\-bit array element is accessed separately:
+8-bit array element is accessed separately:
 .PP
 .Vb 2
 \&  cur->stat[0]:16X  = 1;
 \&  cur->stat[1]      = 2;
 .Ve
 .PP
-Here, a 16\-bit column is created with the \s-1MSB\s0 is set to 1 and the \s-1LSB\s0 set to 2.
+Here, a 16-bit column is created with the \s-1MSB\s0 is set to 1 and the \s-1LSB\s0 set to 2.
 .PP
 By default, all processed rows are written to the specified output
 file. If you want to skip writing certain rows, simply execute the C
@@ -433,7 +433,7 @@ example, assuming that \fIinit()\fR and \fIfinish()\fR are in the library
 libmysubs.a in the /opt/special/lib directory, use:
 .PP
 .Vb 1
-\&  funcalc  -l "-L/opt/special/lib -lmysubs" ...
+\&  funcalc  \-l "\-L/opt/special/lib \-lmysubs" ...
 .Ve
 .PP
 User arguments can be passed to a compiled funcalc program using a string
@@ -441,7 +441,7 @@ argument to the \*(L"\-a\*(R" switch.  The string should contain all of the
 user arguments. For example, to pass the integers 1 and 2, use:
 .PP
 .Vb 1
-\&  funcalc -a "1 2" ...
+\&  funcalc \-a "1 2" ...
 .Ve
 .PP
 The arguments are stored in an internal array and are accessed as
@@ -470,7 +470,7 @@ This expression will print out x, y, and pha values for all rows in which
 the pha value is between the two user-input values:
 .PP
 .Vb 6
-\&  funcalc -a '1 12' -f foo snr.ev'[cir 512 512 .1]'
+\&  funcalc \-a '1 12' \-f foo snr.ev'[cir 512 512 .1]'
 \&  512 512 6
 \&  512 512 8
 \&  512 512 5
@@ -479,7 +479,7 @@ the pha value is between the two user-input values:
 .Ve
 .PP
 .Vb 4
-\&  funcalc -a '5 6' -f foo snr.ev'[cir 512 512 .1]'
+\&  funcalc \-a '5 6' \-f foo snr.ev'[cir 512 512 .1]'
 \&  512 512 6
 \&  512 512 5
 \&  512 512 5
@@ -619,4 +619,4 @@ adding support for image expressions at a later point, if there is
 demand for such support from the community.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

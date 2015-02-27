@@ -131,10 +131,10 @@
 .IX Title "funtbl 1"
 .TH funtbl 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfuntbl \- extract a table from Funtools ASCII output\fR
+funtbl \- extract a table from Funtools ASCII output
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funtable [\-c cols] [\-h] [\-n table] [\-p prog] [\-s sep] <iname>
+\&\fBfuntable\fR [\-c cols] [\-h] [\-n table] [\-p prog] [\-s sep] <iname>
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
 [\s-1NB:\s0 This program has been deprecated in favor of the \s-1ASCII\s0 text processing
@@ -165,7 +165,7 @@ describing program usage.
 For example, consider the output from the following funcnts command:
 .PP
 .Vb 10
-\&  [sh] funcnts -sr snr.ev "ann 512 512 0 9 n=3"
+\&  [sh] funcnts \-sr snr.ev "ann 512 512 0 9 n=3"
 \&  # source
 \&  #   data file:        /proj/rd/data/snr.ev
 \&  #   arcsec/pixel:     8
@@ -214,7 +214,7 @@ There are four tables in this output. To extract the last one, you
 can execute:
 .PP
 .Vb 4
-\&  [sh] funcnts -s snr.ev "ann 512 512 0 9 n=3" | funtbl -n 4
+\&  [sh] funcnts \-s snr.ev "ann 512 512 0 9 n=3" | funtbl \-n 4
 \&  1 147.000 25 147.000 25
 \&  2 478.000 84 625.000 109
 \&  3 817.000 140 1442.000 249
@@ -227,7 +227,7 @@ To extract only columns 1,2, and 4 from the last example (but with a header
 prepended and tabs between columns), you can execute:
 .PP
 .Vb 5
-\&  [sh] funcnts -s snr.ev "ann 512 512 0 9 n=3" | funtbl -c "1 2 4" -h -n 4 -s "\et"
+\&  [sh] funcnts \-s snr.ev "ann 512 512 0 9 n=3" | funtbl \-c "1 2 4" \-h \-n 4 \-s "\et"
 \&  #reg    counts  sumcnts
 \&  1       147.000 147.000
 \&  2       478.000 625.000
@@ -238,7 +238,7 @@ Of course, if the output has previously been saved in a file named
 foo.out, the same result can be obtained by executing:
 .PP
 .Vb 5
-\&  [sh] funtbl -c "1 2 4" -h -n 4 -s "\et" foo.out
+\&  [sh] funtbl \-c "1 2 4" \-h \-n 4 \-s "\et" foo.out
 \&  #reg    counts  sumcnts
 \&  1       147.000 147.000
 \&  2       478.000 625.000
@@ -246,4 +246,4 @@ foo.out, the same result can be obtained by executing:
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

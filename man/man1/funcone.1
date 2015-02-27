@@ -118,8 +118,8 @@
 .    ds : e
 .    ds 8 ss
 .    ds o a
-.    ds d- d\h'-1'\(ga
-.    ds D- D\h'-1'\(hy
+.    ds d- d\h'\-1'\(ga
+.    ds D- D\h'\-1'\(hy
 .    ds th \o'bp'
 .    ds Th \o'LP'
 .    ds ae ae
@@ -131,22 +131,22 @@
 .IX Title "funcone 1"
 .TH funcone 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfuncone \- cone search of a binary table containing RA, Dec columns\fR
+funcone \- cone search of a binary table containing RA, Dec columns
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-funcone <switches>  <iname> <oname> <ra[hdr]> <dec[hdr]> <radius[dr'"]> [columns]
+\&\fBfuncone\fR <switches>  <iname> <oname> <ra[hdr]> <dec[hdr]> <radius[dr'"]> [columns]
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 9
-\&  -d deccol:[hdr]  # Dec column name, units (def: DEC:d)
-\&  -j               # join columns from list file
-\&  -J               # join columns from list file, output all rows
-\&  -l listfile      # read centers and radii from a list
-\&  -L listfile      # read centers and radii from a list, output list rows
-\&  -n               # don't use cone limits as a filter
-\&  -r  racol:[hdr]  # RA column name, units (def: RA:h)
-\&  -x               # append RA_CEN, DEC_CEN, RAD_CEN, CONE_KEY cols
-\&  -X               # append RA_CEN, DEC_CEN, RAD_CEN, CONE_KEY cols, output all rows
+\&  \-d deccol:[hdr]  # Dec column name, units (def: DEC:d)
+\&  \-j               # join columns from list file
+\&  \-J               # join columns from list file, output all rows
+\&  \-l listfile      # read centers and radii from a list
+\&  \-L listfile      # read centers and radii from a list, output list rows
+\&  \-n               # don't use cone limits as a filter
+\&  \-r  racol:[hdr]  # RA column name, units (def: RA:h)
+\&  \-x               # append RA_CEN, DEC_CEN, RAD_CEN, CONE_KEY cols
+\&  \-X               # append RA_CEN, DEC_CEN, RAD_CEN, CONE_KEY cols, output all rows
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -270,7 +270,7 @@ To get \s-1RA\s0 and Dec from a list but use a static value for radius (and
 also write identifying info for each row in the list):
 .PP
 .Vb 1
-\&  funcone -x -l list.txt in.fits out.fits MYRA MYDec 0.01
+\&  funcone \-x \-l list.txt in.fits out.fits MYRA MYDec 0.01
 .Ve
 .PP
 User specified columns in degrees, \s-1RA\s0 position in hours (sexagesimal
@@ -278,8 +278,8 @@ notation), Dec position in degrees (sexagesimal notation) and radius
 in arc minutes:
 .PP
 .Vb 1
-\&  funcone -r myRa:d -d myDec in.fits out.fits 12:30:15.5 30:12 15'
+\&  funcone \-r myRa:d \-d myDec in.fits out.fits 12:30:15.5 30:12 15'
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

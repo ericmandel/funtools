@@ -131,23 +131,23 @@
 .IX Title "funsky 1"
 .TH funsky 1 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBfunsky \- convert between image and sky coordinates\fR
+funsky \- convert between image and sky coordinates
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 .Vb 4
-\&  funsky iname[ext]               # RA,Dec (deg) or image pix from stdin
-\&  funsky iname[ext] [lname]       # RA, Dec (deg) or image pix from list
-\&  funsky iname[ext] [col1] [col2]         # named cols:units from stdin
-\&  funsky iname[ext] [lname] [col1] [col2] # named cols:units from list
+\&\fBfunsky\fR iname[ext]               # RA,Dec (deg) or image pix from stdin
+\&\fBfunsky\fR iname[ext] [lname]       # RA, Dec (deg) or image pix from list
+\&\fBfunsky\fR iname[ext] [col1] [col2]         # named cols:units from stdin
+\&\fBfunsky\fR iname[ext] [lname] [col1] [col2] # named cols:units from list
 .Ve
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .Vb 5
-\&  -d        # always use integer tlmin conversion (as ds9 does)
-\&  -r        # convert x,y to RA,Dec (default: convert RA,Dec to x,y)
-\&  -o        # include offset from the nominal target position (in arcsec)
-\&  -v        # display input values also (default: display output only)
-\&  -T        # output display in rdb format (w/header,tab delimiters)
+\&  \-d        # always use integer tlmin conversion (as ds9 does)
+\&  \-r        # convert x,y to RA,Dec (default: convert RA,Dec to x,y)
+\&  \-o        # include offset from the nominal target position (in arcsec)
+\&  \-v        # display input values also (default: display output only)
+\&  \-T        # output display in rdb format (w/header,tab delimiters)
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -270,7 +270,7 @@ examples will serve to illustrate the options:
 .Ve
 .PP
 .Vb 4
-\&  [sh] cat im.in | funsky -r snr.ev :d :d
+\&  [sh] cat im.in | funsky \-r snr.ev :d :d
 \&  344.740432    58.606523
 \&  344.731900    58.607634
 \&  344.725500    58.614301
@@ -304,7 +304,7 @@ and/or units:
 .Ve
 .PP
 .Vb 4
-\&  [sh] funsky -r snr.ev im.in :d :d
+\&  [sh] funsky \-r snr.ev im.in :d :d
 \&    344.740432    58.606523
 \&    344.731900    58.607634
 \&    344.725500    58.614301
@@ -332,7 +332,7 @@ coordinates should be pre-pended to each line. For example:
 .Ve
 .PP
 .Vb 4
-\&  [sh] funsky -v snr.ev dd.in MYRA:d MYDEC:d
+\&  [sh] funsky \-v snr.ev dd.in MYRA:d MYDEC:d
 \&    344.740432    58.606523       510.00       510.00
 \&    344.731900    58.607634       512.00       510.50
 \&    344.725500    58.614301       513.50       513.50
@@ -346,7 +346,7 @@ sky units):
 .PP
 .Vb 7
 \&  # output table in non-verbose mode
-\&  [sh] funsky -T snr.ev dd.in MYRA:d MYDEC:d
+\&  [sh] funsky \-T snr.ev dd.in MYRA:d MYDEC:d
 \&             X               Y
 \&  ------------    ------------
 \&        510.00          510.00
@@ -356,7 +356,7 @@ sky units):
 .PP
 .Vb 9
 \&  # output table in verbose mode
-\&  [sh] funsky -T -v snr.ev dd.in MYRA:d MYDEC:d
+\&  [sh] funsky \-T \-v snr.ev dd.in MYRA:d MYDEC:d
 \&  # IFILE = /Users/eric/data/snr.ev
 \&  # ICOL1 = MYRA
 \&  # ICOL2 = MYDEC
@@ -382,4 +382,4 @@ small discrepancy with ds9's converted values for floating point
 data. We will remedy this conflict in the future, maybe.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

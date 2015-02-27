@@ -131,7 +131,7 @@
 .IX Title "funparamget 3"
 .TH funparamget 3 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunParamGet \- get a Funtools param value\fR
+FunParamGet \- get a Funtools param value
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 .Vb 1
@@ -189,7 +189,7 @@ from the primary header on a per-parameter basis:
 \&  FunParamGeti(FUN_PRIMARY(fun), "NAXIS1", 0, 0, &got); # primary header
 .Ve
 .PP
-\&\fB\s-1NB:\s0 \s-1FUN_PRIMARY\s0 is deprecated.\fR
+\s-1NB - \s0 \s-1FUN_PRIMARY\s0 is deprecated.
 It makes use of a global parameter and therefore will not not
 appropriate for threaded applications, when we make funtools
 thread\-safe. We recommend use of \fIFunInfoPut()\fR to switch between the
@@ -234,7 +234,7 @@ raw 80\-character \s-1FITS\s0 card instead.  In particular, if you set the
 .PP
 Alternatively, if the \s-1FUN_RAW\s0 macro is applied to the name, then the
 80\-character raw \s-1FITS\s0 card is returned instead.  
-\&\fB\s-1NB:\s0 \s-1FUN_RAW\s0 is deprecated.\fR 
+\s-1NB - \s0 \s-1FUN_RAW\s0 is deprecated. 
 It makes use of a global parameter and therefore will not not
 appropriate for threaded applications, when we make funtools
 thread\-safe. We recommend use of \fIFunInfoPut()\fR to switch between the
@@ -259,4 +259,4 @@ header cards in a given extension and print out the raw card, use:
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

@@ -128,10 +128,10 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "funtext n"
-.TH funtext n "April 14, 2011" "version 1.4.5" "SAORD Documentation"
+.IX Title "funtext 7"
+.TH funtext 7 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFuntext: Support for Column\-based Text Files\fR
+Funtext \- Support for Column\-based Text Files
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 This document contains a summary of the options for processing column-based
@@ -145,7 +145,7 @@ using the same syntax as \s-1FITS\s0 binary tables:
 .PP
 .Vb 3
 \&  fundisp foo.txt'[cir 512 512 .1]'
-\&  fundisp -T foo.txt > foo.rdb
+\&  fundisp \-T foo.txt > foo.rdb
 \&  funtable foo.txt'[pha=1:10,cir 512 512 10]' foo.fits
 .Ve
 .PP
@@ -710,4 +710,4 @@ The issue of data type transitions (which to allow and which to disallow)
 is still under discussion.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

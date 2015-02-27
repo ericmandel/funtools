@@ -128,10 +128,10 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "regbounds n"
-.TH regbounds n "April 14, 2011" "version 1.4.5" "SAORD Documentation"
+.IX Title "regbounds 7"
+.TH regbounds 7 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBRegBounds: Region Boundaries\fR
+RegBounds \- Region Boundaries
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 Describes how spatial region boundaries are handled.
@@ -154,7 +154,7 @@ separately.
 With this in mind, the rules for determining whether a boundary image
 pixel or table row are assigned to a region are defined below.
 .PP
-\&\fBImage boundaries : radially-symmetric shapes (circle, annuli, ellipse)\fR
+\&\fBImage boundaries  -  radially-symmetric shapes (circle, annuli, ellipse)\fR
 .PP
 For image filtering, pixels whose center is inside the boundary are
 included.  This also applies non-radially-symmetric shapes.  When a
@@ -302,4 +302,4 @@ that funcnts would give the exact same results regardless of whether
 a table or a derived non-blocked binned image is used.]
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-See funtools(n) for a list of Funtools help pages
+See funtools(7) for a list of Funtools help pages

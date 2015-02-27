@@ -128,10 +128,10 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "funview n"
-.TH funview n "April 14, 2011" "version 1.4.5" "SAORD Documentation"
+.IX Title "funview 7"
+.TH funview 7 "April 14, 2011" "version 1.4.5" "SAORD Documentation"
 .SH "NAME"
-\&\fBFunview: Database View Support for Tables\fR
+Funview \- Database View Support for Tables
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 This document contains a summary of the options for utilizing
@@ -238,7 +238,7 @@ parameters) is processed as the input file to fundisp. Using the
 example database, above, this is equivalent to:
 .PP
 .Vb 1
-\&  fundisp  -f "I=%4d" ${HOME}/data/snr.ev'[cir 512 512 .1]'  "x y pi pha"
+\&  fundisp  \-f "I=%4d" ${HOME}/data/snr.ev'[cir 512 512 .1]'  "x y pi pha"
 .Ve
 .PP
 That is, the format is used with fundisp's \-f (format) switch, while the
@@ -324,7 +324,7 @@ simple template match is attempted against the \fBfile\fR columns.
 5. If no match is found, then the filename (minus the \*(L"v:\*(R" prefix) is 
 returned.
 .PP
-\&\fBMore on View Matching Rules: Single vs. Multiple Matches \fR
+More on View Matching Rules -  Single vs. Multiple Matches 
 .PP
 The matching rules described above stop after the first match,
 regardless of whether that match provides values for all three
@@ -371,7 +371,7 @@ against the x1 file name:
 Note once again that order is important: missing values are taken in the
 order in which the template matches are processed.
 .PP
-\&\fBView Lists: Applying a View to Any File\fR
+View Lists -  Applying a View to Any File
 .PP
 It is possible to apply a named View, or even several Views, to any
 data file by appending a \fBviewlist\fR immediately after the standard \*(L"v:\*(R"
@@ -459,7 +459,7 @@ associated parameters, be processed as the input file to fundisp in
 this way:
 .PP
 .Vb 1
-\&  fundisp  -f "I=%4d" ${HOME}/data/snr.ev'[cir 512 512 .1]'  "x y pi pha"
+\&  fundisp  \-f "I=%4d" ${HOME}/data/snr.ev'[cir 512 512 .1]'  "x y pi pha"
 .Ve
 .PP
 To override one or more of these values, simply specify a new value
@@ -476,7 +476,7 @@ examples are:
 .PP
 .Vb 2
 \&  fundisp v:x3 "x y dx dy"    # activate a different set of columns
-\&  fundisp -f "I=%3d" v:x3     # use a different format statement
+\&  fundisp \-f "I=%3d" v:x3     # use a different format statement
 .Ve
 .PP
 Note that extension names, extension index values, and other
