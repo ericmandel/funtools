@@ -3,10 +3,17 @@ Quick Summary
 
 To build and install the Funtools package, simply execute:
 
+   	./mkconfigure		# generate all configure scripts
 	./configure		# site-specific configuration
 	make			# build the software
 	make install		# install it
 	make clean		# clean up unneeded temp files
+
+The configure scripts are not part of the GitHub repository, so you must
+generate them for your site (you might need to install autoconf for this
+purpose):
+
+        ./mkconfigure
 
 You might want to install in a directory other than /usr/local, so as not to
 require root access. To do this, configure for a different install directory:
@@ -51,9 +58,11 @@ Development package. I think that's all you need ...
 Details of Installation
 =======================
 
+  
+
 NB: These are generic installation instructions, modified for Funtools.
 
-   The `configure' shell script attempts to guess correct values for
+  The `configure' shell script attempts to guess correct values for
 various system-dependent variables used during compilation.  It uses
 those values to create a `Makefile' in each directory of the package.
 It may also create one or more `.h' files containing system-dependent

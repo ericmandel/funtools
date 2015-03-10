@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# here
+autoconf
+
+# sub-directories
+for d in wcs filter fitsy util ; do
+    cd $d && autoconf && cd ..
+done
