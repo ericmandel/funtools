@@ -3,7 +3,32 @@
  */
 
 #include <stdio.h>
-#include <tl.h>
+#include <stdlib.h>
+#include "word.h"
+#include "tl.h"
+
+/*
+ * getfitsfloatcenter: funtools and cfitsio have a 0.5 pixel descrepancy
+ * when converting floating point physical coords to image coords.
+ * setting this environment variable makes funtools work like cfitsio
+ */
+static double fitscenval=0.5;
+static int ceninited=0;
+#ifdef ANSI_FUNC
+static double getfitsfloatcenter(void)
+#else
+static double getfitsfloatcenter()
+#endif
+{
+  char *s=NULL;
+  if( !ceninited ){
+    if( (s=getenv("FILTER_CFITSIO")) && istrue(s) ){
+      fitscenval = 1.0;
+    }
+    ceninited = 1;
+  }
+  return fitscenval;
+}
 
 #ifdef ANSI_FUNC
 double
@@ -16,6 +41,7 @@ double tlp2i (dp, tlmin, binsiz, type)
      int type;
 #endif
 {
+  double dval = getfitsfloatcenter();
   if( (binsiz == 1.0) || (binsiz <= 0.0) ){
     switch(type){
     case 'B':
@@ -28,7 +54,7 @@ double tlp2i (dp, tlmin, binsiz, type)
       return ((dp - tlmin) + 1.0);
     case 'E':
     case 'D':
-      return ((dp - tlmin) + 0.5);
+      return ((dp - tlmin) + dval);
     }
   }
   else{
@@ -43,7 +69,7 @@ double tlp2i (dp, tlmin, binsiz, type)
       return ((dp - tlmin)/binsiz + 1.0);
     case 'E':
     case 'D':
-      return ((dp - tlmin)/binsiz + 0.5);
+      return ((dp - tlmin)/binsiz + dval);
     }
   }
 }
@@ -81,6 +107,7 @@ double tli2p (di, tlmin, binsiz, type)
      int type;
 #endif
 {
+  double dval = getfitsfloatcenter();
   if( (binsiz == 1.0) || (binsiz <= 0.0) ){
     switch(type){
     case 'B':
@@ -93,7 +120,7 @@ double tli2p (di, tlmin, binsiz, type)
       return ((di - 1.0) + tlmin);
     case 'E':
     case 'D':
-      return ((di - 0.5) + tlmin);
+      return ((di - dval) + tlmin);
     }
   }
   else{
@@ -108,7 +135,7 @@ double tli2p (di, tlmin, binsiz, type)
       return ((di - 1.0)*binsiz + tlmin);
     case 'E':
     case 'D':
-      return ((di - 0.5)*binsiz + tlmin);
+      return ((di - dval)*binsiz + tlmin);
     }
   }
 }
