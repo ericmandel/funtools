@@ -4,6 +4,7 @@
 
 #include <math.h>
 #include <funtools.h>
+#include <NaN.h>
 #include <filter.h>
 #include <swap.h>
 #include <word.h>
@@ -683,7 +684,9 @@ main(argc, argv)
 	    area[k][masks[k][i].region-1] += 
 	      masks[k][i].xstop - masks[k][i].xstart + 1;
 	    for(j=masks[k][i].xstart-1; j<=masks[k][i].xstop-1; j++){
-	      cnts[0][k][masks[k][i].region-1] += dbuf[j];
+	      if( !isnand(dbuf[j]) ){
+		cnts[0][k][masks[k][i].region-1] += dbuf[j];
+	      }
 	    }
 	  }
 	  /* free temp buffers */
@@ -816,7 +819,9 @@ main(argc, argv)
 	  area[SRC][masks[SRC][i].region-1] += 
 	    masks[SRC][i].xstop - masks[SRC][i].xstart + 1;
 	  for(k=masks[SRC][i].xstart-1; k<=masks[SRC][i].xstop-1; k++){
-	    cnts[0][SRC][masks[SRC][i].region-1] += dbuf[k];
+	    if( !isnand(dbuf[k]) ){
+	      cnts[0][SRC][masks[SRC][i].region-1] += dbuf[k];
+	    }
 	  }
 	  i++;
 	  break;
@@ -831,7 +836,9 @@ main(argc, argv)
 	  area[BKG][masks[BKG][j].region-1] +=
 	    masks[BKG][j].xstop - masks[BKG][j].xstart + 1;
 	  for(k=masks[BKG][j].xstart-1; k<=masks[BKG][j].xstop-1; k++){
-	    cnts[0][BKG][masks[BKG][j].region-1] += dbuf[k];
+	    if( !isnand(dbuf[k]) ){
+	      cnts[0][BKG][masks[BKG][j].region-1] += dbuf[k];
+	    }
 	  }
 	  j++;
 	  break;
