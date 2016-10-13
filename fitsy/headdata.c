@@ -31,7 +31,7 @@ off_t ft_dataskip(ifile, fits, ofiles, nofile)
 		
 	if ( ft_seek(fits) != -1 && (!ofiles || !nofile) ) {
 	  if ( ft_databytes(fits) ){
-		pos = Seek(ifile, ft_databloks(fits) * FT_BLOCK, 1);
+		pos = ftSeek(ifile, ft_databloks(fits) * FT_BLOCK, 1);
 		return pos;
 	  }
 	}
@@ -39,14 +39,14 @@ off_t ft_dataskip(ifile, fits, ofiles, nofile)
 	if ( ft_databytes(fits) ) {
 	    for ( blocks = ft_databloks(fits);
 		  blocks > NBLOCK; blocks -= NBLOCK ) {
-		Read(ifile, block, 1, FT_BLOCK*NBLOCK);
+		ftRead(ifile, block, 1, FT_BLOCK*NBLOCK);
 		for(i=0; i<nofile; i++)
-		    Write(ofiles[i], block, 1, FT_BLOCK*NBLOCK);
+		    ftWrite(ofiles[i], block, 1, FT_BLOCK*NBLOCK);
 	    }
 	    if ( blocks ) {
-		Read(ifile, block, 1, FT_BLOCK*blocks);
+		ftRead(ifile, block, 1, FT_BLOCK*blocks);
 		for(i=0; i<nofile; i++)
-		    Write(ofiles[i], block, 1, FT_BLOCK*blocks);
+		    ftWrite(ofiles[i], block, 1, FT_BLOCK*blocks);
 	    }
 	}
 	return pos;
@@ -61,7 +61,7 @@ off_t ft_dataseek(sfile, fits)
         if ( sfile == NULL ) 	return -1;
         if ( fits  == NULL ) 	return -1;
 
-	return Seek(sfile, fits->data, 0) != -1;
+	return ftSeek(sfile, fits->data, 0) != -1;
 }
 
 

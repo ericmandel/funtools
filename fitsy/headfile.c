@@ -26,12 +26,12 @@ FITSHead ft_headread0(file, card1, n)
     ((char *)cards)[FT_BLOCK] = '\0';
     fits = ft_headinit(cards, -FT_CARDS*FT_CARDLEN);
 
-    fits->seek  = Tell(file);
+    fits->seek  = ftTell(file);
 
     if ( card1 )
 	memmove(fits->cards, card1, n);
 
-    if ( Read(file, (void *)&fits->cards[0].c[n],
+    if ( ftRead(file, (void *)&fits->cards[0].c[n],
 	      1, FT_BLOCK - n) != FT_BLOCK - n ) {
 	Free(fits->cards);
 	Free(fits);
@@ -53,7 +53,7 @@ FITSHead ft_headread0(file, card1, n)
 	} else
 	    nbloks--;
 
-	if ( Read(file, (void *)&fits->cards[nbloks * FT_CARDS], 
+	if ( ftRead(file, (void *)&fits->cards[nbloks * FT_CARDS], 
 		  1, FT_BLOCK) != FT_BLOCK ) {
 	    Free(fits->cards);
 	    Free(fits);
@@ -61,7 +61,7 @@ FITSHead ft_headread0(file, card1, n)
 	}
     }
 
-    fits->data  = Tell(file);
+    fits->data  = ftTell(file);
 
     fits->ncard = end - fits->cards + 1;
     fits->acard = nbloks * FT_CARDS;
@@ -93,9 +93,9 @@ int ft_headwrite(file, fits)
 
     if ( fits->sync ) ft_synchead(fits);
 
-    Write(file, (void *)fits->cards, 
+    ftWrite(file, (void *)fits->cards, 
 	  FT_BLOCK, ((fits->ncard+FT_CARDS-1)/FT_CARDS));
-    Flush(file);
+    ftFlush(file);
 
     return 1;
 }
@@ -128,7 +128,7 @@ off_t ft_headseek(file, fits)
     if ( file == NULL )		return -1;
     if ( fits == NULL )		return -1;
 
-    return Seek(file, fits->seek, 0) != -1;
+    return ftSeek(file, fits->seek, 0) != -1;
 }
 
 int ft_sync(fits, x)

@@ -218,7 +218,7 @@ POST="|\& cat"
 case $host_os in
     *cygwin*|*Cygwin* )
         CFLAGS="$CFLAGS -enable-auto-import"
-        AC_DEFINE([HAVE_CYGWIN], [], [Define if the cygwin compiler is used.])
+        AC_DEFINE([HAVE_CYGWIN])
         AC_MSG_RESULT(flagging Cygwin)
 	PRE="sh -c {"
 	POST="}"
@@ -226,7 +226,7 @@ case $host_os in
     *mingw32*|*Mingw32*)
         CFLAGS="$CFLAGS -mconsole -D_WSTRING_DEFINED=1"
 	EXTRA_LIBS="$EXTRA_LIBS -lwsock32"
-        AC_DEFINE([HAVE_MINGW32], [], [Define if the mingw32 compiler is used.])
+        AC_DEFINE([HAVE_MINGW32])
         AC_MSG_RESULT(flagging MinGW)
         ;;
     *osf*|*Osf*)

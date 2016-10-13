@@ -47,7 +47,7 @@ void *ft_dataread(file, fits, dataptr, pixtype)
     /* Read in enough data but don't show an error in a short data
      * block.
      */
-    if(Read(file, fdata, 1, ft_databloks(fits)*FT_BLOCK) < ft_databytes(fits)){
+    if(ftRead(file, fdata, 1, ft_databloks(fits)*FT_BLOCK) < ft_databytes(fits)){
 	if ( dataptr == NULL ) {
 	    if ( fdata != mdata ) Free(fdata);
 	    Free(mdata);
@@ -122,17 +122,17 @@ int ft_datawrite(file, fits, data, pixtype)
 
     memset(blok, 0, FT_BLOCK);
 
-    Write(file, fdata, 1, ft_databytes(fits));
+    ftWrite(file, fdata, 1, ft_databytes(fits));
 
     /* this is how John would do it ...
-    Write(file, blok , 1, 
+    ftWrite(file, blok , 1, 
     (FT_BLOCK - ft_databytes(fits) % FT_BLOCK) % FT_BLOCK);
     */
 
     /* ... and this is Eric's way ... */
     pad = FT_BLOCK - ft_databytes(fits) % FT_BLOCK;
     if( pad && (pad != FT_BLOCK) )
-      Write(file, blok , 1, pad);
+      ftWrite(file, blok , 1, pad);
 
     if ( mdata != fdata ) Free(fdata);
     return 1;

@@ -254,7 +254,7 @@ int ft_simpleimageread(filename, headptr, dataptr, data2dptr, pixtype)
 
     ft_parsefilename(filename, name, extn, max, &indx, tail, max);
 
-    if ( (file = Open(name, "r"))   == NULL ) {
+    if ( (file = ftOpen(name, "r"))   == NULL ) {
         if ( headptr ) 	 *headptr   = NULL;
 	if ( data2dptr ) *data2dptr = NULL;
 
@@ -293,7 +293,7 @@ int ft_simpleimageread(filename, headptr, dataptr, data2dptr, pixtype)
     else{
       ft_headfree(head, 1);
     }
-    Close(file);
+    ftClose(file);
 
     return ret;
 }
@@ -311,7 +311,7 @@ int ft_simpleimagewrite(filename, fits, data, pixtype)
 
     if ( fits == NULL )		return 0;
 
-    file = Open(filename, "wb");
+    file = ftOpen(filename, "wb");
 
     if (file == NULL) {
 	return 0;
@@ -320,7 +320,7 @@ int ft_simpleimagewrite(filename, fits, data, pixtype)
     prim = ft_primary(fits);
     
     ft_imagewrite(file, prim, data, pixtype);
-    Close(file);
+    ftClose(file);
 
     ft_headfree(prim, 1);
     return 1;
