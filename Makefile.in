@@ -534,7 +534,7 @@ pclean:
 		$(RM) $(PROGS) $(DEVEL)
 
 distclean:	clean
-		$(RM) config.status config.cache config.log funtools.pc
+		$(RM) Makefile config.status config.cache config.log funtools.pc
 
 Distclean:	distclean
 		for dir in $(SUBDIRS); do \

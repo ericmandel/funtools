@@ -57,7 +57,7 @@ void *ft_filedata(file, ft)
     if ( ft->data != NULL ) 		return ft->data;
     if ( ft_seek(ft->head) == -1 )	return NULL;
 
-    if ( Seek(file, ft_seek(ft->head), 0) == -1 )
+    if ( ftSeek(file, ft_seek(ft->head), 0) == -1 )
 	return NULL;
 
     return ft->data = ft_dataread(file, ft->head, NULL, ft->bitpix);

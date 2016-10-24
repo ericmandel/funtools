@@ -570,7 +570,7 @@ int ParseArraySpec(tbuf, xdim, ydim, bitpix, skip, bigendian)
     /* now check for the optional ydim value */
     tptr++;
     lval = strtol(tptr, &tptr2, 10);
-    if( (tptr == tptr2) )
+    if( tptr == tptr2 )
       tydim = txdim;
     else{
       if( lval <=0 )

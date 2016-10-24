@@ -485,7 +485,7 @@ int FunTextParam(pdelims, lbuf, kbuf, vbuf, cbuf, maxlen)
       break;
     /* look for comment */
     case 6:
-      if( (*tptr == '/') ){
+      if( *tptr == '/' ){
 	tptr++;
 	hstate = 7;
 	len = 0;

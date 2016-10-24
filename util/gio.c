@@ -2030,7 +2030,7 @@ void gfreebuf(gio, buf)
      void *buf;
 #endif
 {
-  if( (gio==NULL) )
+  if( gio==NULL )
     return;
 
   switch(gio->type){

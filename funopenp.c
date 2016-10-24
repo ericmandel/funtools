@@ -775,7 +775,7 @@ off_t _FunImageSkip(fun, tail)
   /* we look for a plane specification for each axis > 2 */
   for(i=3; i<=naxes; i++){
     plane = strtol(s, &t, 10);
-    if( (s == t) )
+    if( s == t )
       plane = 1;
     else if( (plane < 1) || (plane > ft_naxis(fun->header, i)) )
       return -1;

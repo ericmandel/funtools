@@ -270,16 +270,16 @@ File ft_fitsheadread(file, filename, header, mode, iline, ifd)
 
   /* make sure this is a FITS file by looking at the first card */
   tptr = (iline ? iline : tbuf);
-  if( ( !Gets(file, tptr, 10) ) ||
+  if( ( !ftGets(file, tptr, 10) ) ||
       (strncmp(tptr, "SIMPLE  =", 9) && strncmp(tptr, "XTENSION=", 9)) ){
     /* pass back opened file so someone else can make an attempt */
-    if( !ifd ) Close(file);
+    if( !ifd ) ftClose(file);
     return NULL;
   }
   tlen = strlen(tptr);
-  if( Read(file, &tptr[tlen], FT_CARDLEN-tlen, 1) != 1 ){
+  if( ftRead(file, &tptr[tlen], FT_CARDLEN-tlen, 1) != 1 ){
     /* pass back opened file so someone else can make an attempt */
-    if( !ifd ) Close(file);
+    if( !ifd ) ftClose(file);
     return NULL;
   }
 
@@ -292,7 +292,7 @@ File ft_fitsheadread(file, filename, header, mode, iline, ifd)
 
   /* read primary header */
   if ( (prim = ft_headread0(file, tbuf, FT_CARDLEN)) == NULL ){
-    Close(file);
+    ftClose(file);
     return NULL;
   }
 
@@ -345,7 +345,7 @@ File ft_fitsheadread(file, filename, header, mode, iline, ifd)
 
     if ( !head ) {
       ft_headfree(prim, 1);
-      Close(file);
+      ftClose(file);
       return NULL;
     }
   } else if ( indx > 0 ) {	/* Extension index, not == 0		*/
@@ -361,7 +361,7 @@ File ft_fitsheadread(file, filename, header, mode, iline, ifd)
     for ( i = 1; i <= indx; i++ ) {
       if ( (head = ft_headread(file)) == NULL ) {
 	ft_headfree(prim, 1);
-	Close(file);
+	ftClose(file);
 	return NULL;
       }
       if( i != indx ){
@@ -461,7 +461,7 @@ File ft_fitsheadopenfd(filename, header, tail, len, mode, file, iline, ifd)
     cflag = 0;
 
   if( !file ){
-    if ( (file = Open(name, xmode))   == NULL )
+    if ( (file = ftOpen(name, xmode))   == NULL )
       return NULL;
   }
 
