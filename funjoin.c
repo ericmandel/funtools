@@ -616,7 +616,7 @@ JoinWriteRows(files, ifiles, nfile, matches, nmatch, jbits, ofiles)
     /* save jfiles flag value, if necessary */
     if( jbits ){
       rowptr = ofiles[0].rowbuf + ofiles[0].rowoffset;
-      memcpy(rowptr, jfiles, sizeof(jfiles));
+      memcpy(rowptr, jfiles, jbits);
     }
     /* write row */
     IPRINTF((stderr, "\n"));
