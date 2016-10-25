@@ -485,7 +485,7 @@ ViewProcessMatches(view, fname, fmax)
 	}
 	/* otherwise add original + new filter, if we have one */
 	else{
-	  if( view->filt && view->filt->filt && *view->filt->filt ){
+	  if( view->filt && *view->filt->filt ){
 	    snprintf(fname, fmax, "%s%s[%s]",
 		     view->file->file, s, view->filt->filt);
 	  }
@@ -498,7 +498,7 @@ ViewProcessMatches(view, fname, fmax)
       /* no original filter */
       else{
 	/* otherwise new filter, if we have one */
-	if( view->filt && view->filt->filt && *view->filt->filt ){
+	if( view->filt && *view->filt->filt ){
 	  snprintf(fname, fmax, "%s[%s]", view->file->file, view->filt->filt);
 	}
 	/* just the file name */
@@ -508,9 +508,9 @@ ViewProcessMatches(view, fname, fmax)
       }
       /* save other view info */
       if( view->ifun ){
-	if( view->cols && view->cols->cols ) 
+	if( view->cols && *view->cols->cols ) 
 	  view->ifun->vcols = xstrdup(view->cols->cols);
-	if( view->fmt  && view->fmt->fmt )
+	if( view->fmt  && *view->fmt->fmt )
 	  view->ifun->vfmt  = xstrdup(view->fmt->fmt);
       }
     }

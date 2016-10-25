@@ -173,7 +173,7 @@ void	ft_imagestorhead(fits, image)
 void ft_imagefree(image)
 	FITSImage image;
 {
-	if ( image ) Free(image);
+  if ( image ) (void)Free(image);
 }
 
 /* Load basic FITS values into the #FITSBasic structure.
@@ -267,8 +267,8 @@ void	ft_basicstorhead(fits, basic)
 void ft_basicfree(basic)
 	FITSBasic basic;
 {
-	if ( basic->name ) Free(basic->name );
-	if ( basic->hduname ) Free(basic->hduname );
-	if ( basic ) Free(basic );
+  if ( basic->name ) (void)Free(basic->name );
+  if ( basic->hduname ) (void)Free(basic->hduname );
+  if ( basic ) (void)Free(basic );
 }
 

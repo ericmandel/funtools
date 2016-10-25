@@ -6,6 +6,14 @@
 #include <regions.h>
 #endif
 
+#ifndef UNUSED
+#ifdef __GNUC__
+#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+#else
+#  define UNUSED(x) UNUSED_ ## x
+#endif
+#endif
+
 /* panda and pie incorrectly used astronomical angles. fixed 4/2004 */
 #define USE_ASTRO_ANGLE 0
 
@@ -29,13 +37,8 @@ void initimregions(void)
   return;
 }
 
-static void markx(GFilt g, int sno, int flag, int type, int x, int y)
+static void markx(GFilt g, int UNUSED(sno), int flag, int type, int x, int y)
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    sno = sno;
-  }
-
   /* don't mark exclude regions */
   if( type == TOK_EREG )
     return;
@@ -99,7 +102,7 @@ imagemaskcmp(const void *s1, const void *s2)
 
 /* ***************************** shape support ***************************** */
 
-static void quadeq(double a, double b, double c, 
+static void quadeq(double a, double b, double c,
 		   double *x1, double *x2, int *nr, int *nc)
 {
   double dis, q;
@@ -159,8 +162,8 @@ static void rgs_mark(GFilt g, Scan *scanlist,
   markx(g, sno, flag, type, xval, yval);
 }
 
-static void rgs_segment(GFilt g, Scan *scanlist, int width, int height, 
-			int sno, int flag, int type, 
+static void rgs_segment(GFilt g, Scan *scanlist, int width, int height,
+			int sno, int flag, int type,
 			double x1, double y1, double x2, double y2)
 {
   int ystart, ystop, yval, xval;
@@ -187,8 +190,8 @@ static void rgs_segment(GFilt g, Scan *scanlist, int width, int height,
   }
 }
 
-static void _polygoni(GFilt g, int qt, int rno, int sno, int flag, int type,
-		      double *vx, double *vy, int count)
+static void _polygoni(GFilt g, int qt, int UNUSED(rno), int sno, int flag,
+                      int type, double *vx, double *vy, int count)
 {
   int i, j;
   double xlo, xhi;
@@ -201,11 +204,6 @@ static void _polygoni(GFilt g, int qt, int rno, int sno, int flag, int type,
     vy[i] = (vy[i] - g->ymin)/g->block + 1.0;
   }
 #endif
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    rno = rno;
-  }
-
   /* find the limits */
   xlo = vx[0];
   xhi = xlo;
@@ -304,8 +302,6 @@ static int pie_intercept(int width, int height, double xcen, double ycen,
 #if USE_ASTRO_ANGLE
   /* convert to a Cartesian angle */
   angl = angl + 90.0;
-#else
-  angl = angl;
 #endif
   if(angl >= 360.0)
     angl = angl - 360.0;
@@ -347,7 +343,7 @@ static int pie_intercept(int width, int height, double xcen, double ycen,
 }
 
 void _impiei(GFilt g, int qt, int rno, int sno, int flag, int type,
-	     double x, double y,
+	     double UNUSED(x), double UNUSED(y),
 	     double xcen, double ycen, double angle1, double angle2)
 {
   int width, height;		/* l: image mask width and height */
@@ -358,12 +354,6 @@ void _impiei(GFilt g, int qt, int rno, int sno, int flag, int type,
   double x2, y2;		/* l: coordinates of second intercept */
 
   /* NB: do not use x and y variables, they have bogus values */
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    x = x;
-    y = y;
-  }
-
   /* divide by block factor to get "real" parameters */
   xcen = (xcen - g->xmin)/g->block + 1.0;
   ycen = (ycen - g->ymin)/g->block + 1.0;
@@ -497,7 +487,7 @@ int imannulus(GFilt g, int rno, int sno, int flag, int type,
 }
 
 void imboxi(GFilt g, int rno, int sno, int flag, int type,
-	    double x, double y,
+	    double UNUSED(x), double UNUSED(y),
 	    double xcen, double ycen, double xwidth, double yheight,
 	    double angle)
 {
@@ -509,12 +499,6 @@ void imboxi(GFilt g, int rno, int sno, int flag, int type,
   double cornerx[4], cornery[4]; /* l: arrays of x and y coords of 4 corners */
 
   /* NB: do not use x and y variables, they have bogus values */
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    x = x;
-    y = y;
-  }
-
   if( (xwidth == 0) && (yheight==0) ){
     return;
   }
@@ -572,24 +556,18 @@ void imboxi(GFilt g, int rno, int sno, int flag, int type,
 
 int imbox(GFilt g, int rno, int sno, int flag, int type,
 	  double x, double y,
-	  double xcen, double ycen, double xwidth, double yheight,
-	  double angle)
+	  double UNUSED(xcen), double UNUSED(ycen),
+	  double xwidth, double yheight,
+	  double UNUSED(angle))
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    xcen = xcen;
-    ycen = ycen;
-    angle = angle;
-  }
-
   if( (xwidth == 0) && (yheight==0) ){
     return(!flag);
   }
   return impolygon(g, rno, sno, flag, type, x, y);
 }
 
-void imcirclei(GFilt g, int rno, int sno, int flag, int type,
-	       double x, double y,
+void imcirclei(GFilt g, int UNUSED(rno), int sno, int flag, int type,
+	       double UNUSED(x), double UNUSED(y),
 	       double xcen, double ycen, double radius)
 {
   int yy;
@@ -598,13 +576,6 @@ void imcirclei(GFilt g, int rno, int sno, int flag, int type,
   Scan *scanlist;
 
   /* NB: do not use x and y variables, they have bogus values */
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    rno = rno;
-    x = x;
-    y = y;
-  }
-
   if( radius == 0 ){
     return;
   }
@@ -637,18 +608,11 @@ void imcirclei(GFilt g, int rno, int sno, int flag, int type,
   }
 }
 
-int imcircle(GFilt g, int rno, int sno, int flag, int type,
+int imcircle(GFilt g, int rno, int sno, int flag, int UNUSED(type),
 	     double x, double y,
-	     double xcen, double ycen, double radius)
+	     double UNUSED(xcen), double UNUSED(ycen), double radius)
 {
   Scan scan;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    type = type;
-    xcen = xcen;
-    ycen = ycen;
-  }
 
   if( radius == 0 ){
     return(!flag);
@@ -784,14 +748,10 @@ void imellipsei(GFilt g, int rno, int sno, int flag, int type,
 
 int imellipse(GFilt g, int rno, int sno, int flag, int type,
 	      double x, double y,
-	      double xcen, double ycen, double xrad, double yrad, double angle)
+	      double xcen, double ycen, double xrad, double yrad,
+	      double UNUSED(angle))
 {
   Scan scan;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    angle = angle;
-  }
 
   if( xrad == yrad ){
     return(imcircle(g, rno, sno, flag, type, x, y, xcen, ycen, xrad));
@@ -831,26 +791,13 @@ int imellipse(GFilt g, int rno, int sno, int flag, int type,
   }
 }
 
-void imfieldi(GFilt g, int rno, int sno, int flag, int type,
-	      double x, double y)
+void imfieldi(GFilt g, int UNUSED(rno), int sno, int flag, int type,
+	      double UNUSED(x), double UNUSED(y))
 {
   int yy;
   Scan *scanlist;
 
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    rno = rno;
-  }
-
   /* NB: do not use x and y variables, they have bogus values */
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    sno = sno;
-    type = type;            
-    x = x;
-    y = y;
-  }
-
   g->shapes[sno].ystart = g->y0;
   g->shapes[sno].ystop = g->y1;
   g->shapes[sno].scanlist = (Scan *)calloc(g->y1+1, sizeof(Scan));
@@ -863,16 +810,9 @@ void imfieldi(GFilt g, int rno, int sno, int flag, int type,
   }
 }
 
-int imfield(GFilt g, int rno, int sno, int flag, int type,
-	    double x, double y)
+int imfield(GFilt g, int rno, int UNUSED(sno), int flag, int UNUSED(type),
+	    double UNUSED(x), double UNUSED(y))
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    sno = sno;            
-    type = type;            
-    x = x;
-    y = y;
-  }
   if( flag ){
     if( rno && flag ) g->rid = rno;
     return 1;
@@ -882,8 +822,8 @@ int imfield(GFilt g, int rno, int sno, int flag, int type,
   }
 }
 
-void imlinei(GFilt g, int rno, int sno, int flag, int type,
-	     double x, double y,
+void imlinei(GFilt g, int UNUSED(rno), int sno, int flag, int type,
+	     double UNUSED(x), double UNUSED(y),
 	     double x1, double y1, double x2, double y2)
 {
   double vx[2];
@@ -892,13 +832,6 @@ void imlinei(GFilt g, int rno, int sno, int flag, int type,
   double invslope, xoffset;
 
   /* NB: do not use x and y variables, they have bogus values */
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    rno = rno;
-    x = x;
-    y = y;
-  }
-
   /* divide by block factor to get "real" parameters */
   x1 = (x1 - g->xmin)/g->block + 1.0;
   y1 = (y1 - g->ymin)/g->block + 1.0;
@@ -940,21 +873,13 @@ void imlinei(GFilt g, int rno, int sno, int flag, int type,
   }
 }
 
-int imline(GFilt g, int rno, int sno, int flag, int type,
+int imline(GFilt g, int rno, int sno, int flag, int UNUSED(type),
 	   double x, double y,
-	   double x1, double y1, double x2, double y2)
+	   double UNUSED(x1), double UNUSED(y1),
+	   double UNUSED(x2), double UNUSED(y2))
 {
   Scan scan;
 
-
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    type = type;            
-    x1 = x1;
-    y1 = y1;
-    x2 = x2;
-    y2 = y2;
-  }
   if( g->evsect ){
     if( g->usebinsiz ){
       x = (int)((x - g->tlminx)/g->binsizx + 1.0);
@@ -995,16 +920,9 @@ void impiei(GFilt g, int rno, int sno, int flag, int type,
 
 int impie(GFilt g, int rno, int sno, int flag, int type,
 	  double x, double y,
-	  double xcen, double ycen, double angle1, double angle2)
+	  double UNUSED(xcen), double UNUSED(ycen),
+	  double UNUSED(angle1), double UNUSED(angle2))
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    xcen = xcen;
-    ycen = ycen;
-    angle1 = angle1;
-    angle2 = angle2;
-  }
-
   return impolygon(g, rno, sno, flag, type, x, y);
 }
 
@@ -1017,31 +935,17 @@ void imqtpiei(GFilt g, int rno, int sno, int flag, int type,
 
 int imqtpie(GFilt g, int rno, int sno, int flag, int type,
 	    double x, double y,
-	    double xcen, double ycen, double angle1, double angle2)
+	    double UNUSED(xcen), double UNUSED(ycen),
+	    double UNUSED(angle1), double UNUSED(angle2))
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    xcen = xcen;
-    ycen = ycen;
-    angle1 = angle1;
-    angle2 = angle2;
-  }
-
   return impolygon(g, rno, sno, flag, type, x, y);
 }
 
-void impointi(GFilt g, int rno, int sno, int flag, int type,
-	      double x, double y,
+void impointi(GFilt g, int UNUSED(rno), int sno, int flag, int type,
+	      double UNUSED(x), double UNUSED(y),
 	      double xcen, double ycen)
 {
   /* NB: do not use x and y variables, they have bogus values */
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    rno = rno;
-    x = x;
-    y = y;
-  }
-
   /* divide by block factor to get "real" parameters */
   xcen = (xcen - g->xmin)/g->block + 1.0;
   ycen = (ycen - g->ymin)/g->block + 1.0;
@@ -1054,18 +958,11 @@ void impointi(GFilt g, int rno, int sno, int flag, int type,
 	   PIXNUM(xcen), PIXNUM(ycen));
 }
 
-int impoint(GFilt g, int rno, int sno, int flag, int type,
+int impoint(GFilt g, int rno, int sno, int flag, int UNUSED(type),
 	    double x, double y,
-	    double xcen, double ycen)
+	    double UNUSED(xcen), double UNUSED(ycen))
 {
   Scan scan;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    type = type;
-    xcen = xcen;
-    ycen = ycen;
-  }
 
   if( g->evsect ){
     if( g->usebinsiz ){
@@ -1101,7 +998,7 @@ int impoint(GFilt g, int rno, int sno, int flag, int type,
 #ifdef __STDC__
 void
 impolygoni(GFilt g, int rno, int sno, int flag, int type,
-	   double x, double y, ...)
+	   double UNUSED(x), double y, ...)
 {
   double *vx=NULL, *vy=NULL;
   int count, maxcount;
@@ -1126,11 +1023,6 @@ void impolygoni(va_alist) va_dcl
   y = va_arg(args, double);
 #endif
   /* NB: do not use x and y variables, they have bogus values */
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    x = x;
-  }
-
   /* allocate space for x,y arguments */
   maxcount = MASKINC;
   vx = (double *)calloc(maxcount, sizeof(double));
@@ -1163,7 +1055,7 @@ void impolygoni(va_alist) va_dcl
 
 #ifdef __STDC__
 int
-impolygon(GFilt g, int rno, int sno, int flag, int type,
+impolygon(GFilt g, int rno, int sno, int flag, int UNUSED(type),
 	  double x, double y, ...)
 {
   int crossings;
@@ -1189,11 +1081,6 @@ int impolygon(va_alist) va_dcl
   y = va_arg(args, double);
 #endif
   va_end(args);
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    type = type;
-  }
-
   if( g->evsect ){
     if( g->usebinsiz ){
       x = (int)((x - g->tlminx)/g->binsizx + 1.0);
@@ -1722,7 +1609,7 @@ int imbpanda(GFilt g, int rno, int sno, int flag, int type,
     if( !imbox(g, 0, xsno, 1, type, x, y, xcen, ycen, xhi, yhi, ang) )
       return(1);
     /* if its in the inner region we win */
-    else if( !imbox(g, 0, xsno+2, 1, type, x, y, xcen, ycen, xlo, ylo, 
+    else if( !imbox(g, 0, xsno+2, 1, type, x, y, xcen, ycen, xlo, ylo,
 		    ang) )
       return(1);
     /* if its not in the pie, we win */
@@ -1793,7 +1680,7 @@ int imepanda(GFilt g, int rno, int sno, int flag, int type,
     if( !imellipse(g, 0, xsno, 1, type, x, y, xcen, ycen, xhi, yhi, ang) )
       return(1);
     /* if its in the inner region we win */
-    else if( !imellipse(g, 0, xsno+2, 1, type, x, y, xcen, ycen, xlo, ylo, 
+    else if( !imellipse(g, 0, xsno+2, 1, type, x, y, xcen, ycen, xlo, ylo,
 			ang) )
       return(1);
     /* if its not in the pie, we win */
@@ -2099,7 +1986,7 @@ int imvpiei(va_alist) va_dcl
 
 #ifdef __STDC__
 void
-imvpointi(GFilt g, int rno, int sno, int flag, int type, 
+imvpointi(GFilt g, int rno, int sno, int flag, int type,
 	  double x, double y, ...)
 {
   int i, j, n;
@@ -2230,7 +2117,7 @@ int imvannulus(va_alist) va_dcl
     }
     /* look through all of them to find the right one */
     for(i=0; i<n; i++){
-      if( imannulus(g, rno+i, sno+i, flag, type, x, y, xcen, ycen, 
+      if( imannulus(g, rno+i, sno+i, flag, type, x, y, xcen, ycen,
 		  xv[i], xv[i+1]) ){
 	return(1);
       }
@@ -2311,7 +2198,7 @@ int imvbox(va_alist) va_dcl
   ang = xv[--n];
   /* this should be impossible ... */
   if( n == 2 ){
-    return(imbox(g, rno, sno, flag, type, x, y, 
+    return(imbox(g, rno, sno, flag, type, x, y,
 		 xcen, ycen, xv[0], xv[1], ang));
   }
   if( flag ){
@@ -2601,8 +2488,9 @@ int imvpoint(va_alist) va_dcl
   return(0);
 }
 
-void imimagemaski(GFilt g, int rno, int sno, int flag, int type,
-		  double x, double y)
+void imimagemaski(GFilt g, int UNUSED(rno), int UNUSED(sno),
+                  int UNUSED(flag), int UNUSED(type),
+		  double UNUSED(x), double UNUSED(y))
 {
   int i, j;
   int got;
@@ -2611,16 +2499,6 @@ void imimagemaski(GFilt g, int rno, int sno, int flag, int type,
   FilterMask xmasks;
 
   /* NB: do not use x and y variables, they have bogus values */
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    rno = rno;
-    sno = sno;
-    flag = flag;
-    type = type;            
-    x = x;
-    y = y;
-  }
-
   /* scale mask x, y values to match the incoming image section */
   mblock = (int)(((double)((g->xmax - g->xmin + 1)/g->block)/(double)g->maskdim) + 0.5);
   if( mblock < 1 ){
@@ -2660,7 +2538,8 @@ void imimagemaski(GFilt g, int rno, int sno, int flag, int type,
   }
 }
 
-int imimagemask(GFilt g, int rno, int sno, int flag, int type,
+int imimagemask(GFilt g, int UNUSED(rno), int UNUSED(sno),
+                int UNUSED(flag), int UNUSED(type),
 		double x, double y)
 {
   int i;
@@ -2668,14 +2547,6 @@ int imimagemask(GFilt g, int rno, int sno, int flag, int type,
 
   if( g->nmask == 0 )
     return(0);
-
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    rno = rno;
-    sno = sno;
-    flag = flag;
-    type = type;            
-  }
   if( g->evsect ){
     if( g->usebinsiz ){
       x = (int)((x - g->tlminx)/g->binsizx + 1.0);

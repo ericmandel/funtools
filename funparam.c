@@ -356,7 +356,7 @@ char *FunParamGets(fun, name, n, defval, got)
     val = ft_headgets(hd, name, n, defval, &card);
     if( doraw || fun->doraw ){
       if( val ) xfree(val);
-      if( card && card->c && *card->c ){
+      if( card && *card->c ){
 	strncpy(tbuf, card->c, FT_CARDLEN);
 	tbuf[FT_CARDLEN] = '\0';
 	val = xstrdup(tbuf);
@@ -369,7 +369,7 @@ char *FunParamGets(fun, name, n, defval, got)
   else{
     if( n > 0 ){
       card = ft_cardnth(hd, n);
-      if( card && card->c && *card->c ){
+      if( card && *card->c ){
 	strncpy(tbuf, card->c, FT_CARDLEN);
 	tbuf[FT_CARDLEN] = '\0';
 	val = xstrdup(tbuf);

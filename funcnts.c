@@ -86,7 +86,7 @@ DConvert(buf, type, n)
 #endif
 {
   int ival;
-  double dval;
+  double dval=0.0;
 
   switch(type){
   case 'X':

@@ -258,9 +258,6 @@ File ft_fitsheadread(file, filename, header, mode, iline, ifd)
   /* if the user called the wrong routine, fix it */
   if( !file ) return NULL;
 
-  /* avoid -W unused parameter warning */
-  if( 0 ) mode = mode;
-
   /* initialize return values */
   if( iline ) iline[0] = '\0';
   if( ifd )  *ifd = file;
@@ -478,7 +475,7 @@ File ft_fitsheadopenfd(filename, header, tail, len, mode, file, iline, ifd)
 
   /* save filename */
   if( file && header && *header && *name ){
-    if( (*header)->filename ) Free((*header)->filename);
+    if( (*header)->filename ) (void)Free((*header)->filename);
     (*header)->filename = strdup(name);
   }
 

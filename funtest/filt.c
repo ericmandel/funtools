@@ -42,8 +42,8 @@ main(argc, argv)
   int rawsize;
   int endian;
   int *rbuf;
-  char *fname;
-  char *region;
+  char *fname=NULL;
+  char *region=NULL;
   char *rawbuf;
   char *bincols;
   char tbuf[SZ_LINE];

@@ -65,6 +65,7 @@ typedef int16_t flex_int16_t;
 typedef uint16_t flex_uint16_t;
 typedef int32_t flex_int32_t;
 typedef uint32_t flex_uint32_t;
+typedef uint64_t flex_uint64_t;
 #else
 typedef signed char flex_int8_t;
 typedef short int flex_int16_t;
@@ -372,7 +373,7 @@ static void yy_fatal_error (yyconst char msg[]  );
  */
 #define YY_DO_BEFORE_ACTION \
 	(calctext_ptr) = yy_bp; \
-	calcleng = (size_t) (yy_cp - yy_bp); \
+	calcleng = (yy_size_t) (yy_cp - yy_bp); \
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	if ( calcleng >= YYLMAX ) \
@@ -866,7 +867,7 @@ int _calcerror _PRx((char *msg));
 
 
 
-#line 870 "lex.calc.c"
+#line 871 "lex.calc.c"
 
 #define INITIAL 0
 #define INCLUDE 1
@@ -1059,7 +1060,7 @@ YY_DECL
 #line 109 "calc.l"
 
 
-#line 1063 "lex.calc.c"
+#line 1064 "lex.calc.c"
 
 	if ( !(yy_init) )
 		{
@@ -1326,7 +1327,7 @@ YY_RULE_SETUP
 #line 182 "calc.l"
 ECHO;
 	YY_BREAK
-#line 1330 "lex.calc.c"
+#line 1331 "lex.calc.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2426,7 +2427,7 @@ _CalcCB(char *name, void *client_data)
 #else
 static char *_CalcCB(name, client_data)
 	char *name;
-	void *client_data;
+        void *client_data;
 #endif
 {
   CalcCols cur;  
@@ -2435,9 +2436,6 @@ static char *_CalcCB(name, client_data)
   char tbuf3[SZ_LINE];
   int i, got, ip;
   
-  /* avoid -W unused parameter warning */
-  if( 0 ) client_data = client_data;
-
   /* start at beginning of macro buffer */
   /* allocate the macro buffer */
   if( mbuf ) xfree(mbuf);
@@ -2864,12 +2862,10 @@ void _CalcCat(str, ostr, olen)
 
 #ifdef YY_USE_PROTOS
 char *
-FunCalcParse(char *iname, char *oname,
-             char *cmd, char *ex, char *autod, int narg)
+FunCalcParse(char *iname, char *cmd, char *ex, char *autod, int narg)
 #else
-char *FunCalcParse(iname, oname, cmd, ex, autod, narg)
+char *FunCalcParse(iname, cmd, ex, autod, narg)
     char *iname;
-    char *oname;
     char *cmd;
     char *ex;
     char *autod;
@@ -2877,9 +2873,6 @@ char *FunCalcParse(iname, oname, cmd, ex, autod, narg)
 #endif
 {
   int i;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ) oname = oname;
 
   /* initialize global variables */
   n = 0;

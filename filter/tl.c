@@ -7,6 +7,14 @@
 #include "word.h"
 #include "tl.h"
 
+#ifndef UNUSED
+#ifdef __GNUC__
+#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+#else
+#  define UNUSED(x) UNUSED_ ## x
+#endif
+#endif
+
 /*
  * getfitsfloatcenter: funtools and cfitsio have a 0.5 pixel descrepancy
  * when converting floating point physical coords to image coords.
@@ -76,7 +84,7 @@ double tlp2i (dp, tlmin, binsiz, type)
 
 #ifdef ANSI_FUNC
 int
-itlp2i (double dp, double tlmin, double binsiz, int type)
+itlp2i (double dp, double tlmin, double binsiz, int UNUSED(type))
 #else
 int itlp2i (dp, tlmin, binsiz, type)
      double dp;
@@ -85,9 +93,6 @@ int itlp2i (dp, tlmin, binsiz, type)
      int type;
 #endif
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ) type = type;
-
   if( (binsiz == 1.0) || (binsiz <= 0.0) ){
     return (int)((dp - tlmin) + 1.0);
   }

@@ -1455,16 +1455,13 @@ idxrowrec *idxrowreg(idxvalrec *val)
 }
 
 #ifdef ANSI_FUNC
-idxrowrec *idxrowfun(idxvalrec *val)
+idxrowrec *idxrowfun(idxvalrec *UNUSED(val))
 #else
 idxrowrec *idxrowfun(idxvalrec *val)
   idxvalrec *val;
 #endif
 {
   idxrowrec *x=NULL;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ) val = val;
 
   x = idxrownew();
   x->type = IDX_INDEF;

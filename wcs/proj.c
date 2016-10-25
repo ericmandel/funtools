@@ -3370,7 +3370,7 @@ double *phi, *theta;
       *theta = 0.0;
    } else if (fabs(w-90.0) < tol) {
       *phi = 0.0;
-      *theta = copysgni (90.0,y);
+      *theta = copysgn (90.0,y);
    } else {
       /* Iterative solution using weighted division of the interval. */
       if (y > 0.0) {
@@ -3702,7 +3702,7 @@ double *x, *y;
 
 {
    int   face;
-   double cthe, eta, l, m, n, rho, xi;
+   double cthe, eta=0.0, l, m, n, rho, xi=0.0;
    const float tol = 1.0e-7;
 
    float a, a2, a2b2, a4, ab, b, b2, b4, ca2, cb2;

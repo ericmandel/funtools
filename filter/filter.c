@@ -554,7 +554,7 @@ int FilterEvents(filter, ebuf, esize, n, vbuf)
 {
   int i;
   int flag;
-  int get, got;
+  int get=0, got=0;
   int bytes;
   char *eptr;
   char *etop;

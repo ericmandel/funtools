@@ -42,7 +42,7 @@ FITSCard ft_cardins(fits, card, here)
 	if ( fits->cards == NULL ) 	return NULL;
 	if ( card == NULL ) 		return NULL;
 
-	if ( fits->index ) Free(fits->index);
+	if ( fits->index ) (void)Free(fits->index);
 
 	if ( fits->ncard+1 > fits->acard ) {
 		int	hereoffset = 0;
@@ -53,7 +53,7 @@ FITSCard ft_cardins(fits, card, here)
 
 	    fits->acard += FT_CARDS;
 	    /* fits->data  = fits->acard * FT_CARDLEN; */
-	    ReAlloc(fits->cards, sizeof(FITSBuff) * fits->acard + 1);
+	    (void)ReAlloc(fits->cards, sizeof(FITSBuff) * fits->acard + 1);
 	    /* make sure there is a null at the end (EGM) */
 	    ((char *)fits->cards)[sizeof(FITSBuff) * fits->acard] = '\0';
 
@@ -96,7 +96,7 @@ FITSCard ft_carddel(fits, card)
 	if ( fits == NULL ) return NULL;
 	if ( card == NULL ) return NULL;
 
-	Free(fits->index);
+	(void)Free(fits->index);
 	memmove(card, card+1, (ft_last(fits) - card) * sizeof(FITSBuff));
 	ft_cardclr(ft_last(fits), 1);
 

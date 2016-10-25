@@ -207,7 +207,7 @@ again:
 	   cc, cflags, FUN_INCLUDE, libs, FUN_LIB);
 
   /* parse expression */
-  if(!(codestr = FunCalcParse(iname, oname, cmd2, expr, autodefs, args))){
+  if(!(codestr = FunCalcParse(iname, cmd2, expr, autodefs, args))){
     fprintf(stderr, "ERROR: no program generated!\n");
     error = 1;
     goto endgame;

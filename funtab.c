@@ -237,7 +237,7 @@ static void _FunBlank(fun, type, buf)
   
 #ifdef ANSI_FUNC
 static void *
-_FunTextRead(Fun fun, char *buf, size_t size, size_t get,  size_t *got)
+_FunTextRead(Fun fun, char *buf, size_t UNUSED(size), size_t get,  size_t *got)
 #else
 static void *_FunTextRead(fun, buf, size, get,  got)
      Fun fun;
@@ -257,9 +257,6 @@ static void *_FunTextRead(fun, buf, size, get,  got)
   char *bp;
   Parse parser=NULL;
   ParsedLine line;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ) size = size;
 
   /* sanity checks
      NB: the order of ascii columns should be identical to the fitsy columns
@@ -1384,7 +1381,7 @@ int FunTableRowPut(fun, rows, nrow, idx, plist)
 */
 #ifdef ANSI_FUNC
 off_t
-FunTableRowSeek(Fun fun, int nrow, char *plist)
+FunTableRowSeek(Fun fun, int nrow, char *UNUSED(plist))
 #else
 off_t FunTableRowSeek(fun, nrow, plist)
      Fun fun;
@@ -1393,9 +1390,6 @@ off_t FunTableRowSeek(fun, nrow, plist)
 #endif
 {
   off_t ipos, opos;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ) plist = plist;
 
   /* gotta have it */
   if( !_FunValid(fun) )

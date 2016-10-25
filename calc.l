@@ -279,7 +279,7 @@ _CalcCB(char *name, void *client_data)
 #else
 static char *_CalcCB(name, client_data)
 	char *name;
-	void *client_data;
+        void *client_data;
 #endif
 {
   CalcCols cur;  
@@ -288,9 +288,6 @@ static char *_CalcCB(name, client_data)
   char tbuf3[SZ_LINE];
   int i, got, ip;
   
-  /* avoid -W unused parameter warning */
-  if( 0 ) client_data = client_data;
-
   /* start at beginning of macro buffer */
   /* allocate the macro buffer */
   if( mbuf ) xfree(mbuf);
@@ -717,12 +714,10 @@ void _CalcCat(str, ostr, olen)
 
 #ifdef YY_USE_PROTOS
 char *
-FunCalcParse(char *iname, char *oname,
-             char *cmd, char *ex, char *autod, int narg)
+FunCalcParse(char *iname, char *cmd, char *ex, char *autod, int narg)
 #else
-char *FunCalcParse(iname, oname, cmd, ex, autod, narg)
+char *FunCalcParse(iname, cmd, ex, autod, narg)
     char *iname;
-    char *oname;
     char *cmd;
     char *ex;
     char *autod;
@@ -730,9 +725,6 @@ char *FunCalcParse(iname, oname, cmd, ex, autod, narg)
 #endif
 {
   int i;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ) oname = oname;
 
   /* initialize global variables */
   n = 0;

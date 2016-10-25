@@ -38,7 +38,7 @@ void *ft_dataread(file, fits, dataptr, pixtype)
     if ( pixtype && msize != fsize ) {
         Malloc(fdata, ft_databloks(fits) * FT_BLOCK);
 	if ( fdata == NULL ) {
-	   if ( mdata && dataptr == NULL ) Free(mdata);
+	  if ( mdata && dataptr == NULL ) (void)Free(mdata);
 	   return NULL;
 	}
     } else
@@ -49,8 +49,8 @@ void *ft_dataread(file, fits, dataptr, pixtype)
      */
     if(ftRead(file, fdata, 1, ft_databloks(fits)*FT_BLOCK) < ft_databytes(fits)){
 	if ( dataptr == NULL ) {
-	    if ( fdata != mdata ) Free(fdata);
-	    Free(mdata);
+	  if ( fdata != mdata ) (void)Free(fdata);
+	  (void)Free(mdata);
 	}
 	return NULL;
     }
@@ -70,7 +70,7 @@ void *ft_dataread(file, fits, dataptr, pixtype)
         }
     }
 
-    if ( mdata != fdata ) Free(fdata);
+    if ( mdata != fdata ) (void)Free(fdata);
     return mdata;
 }
 
@@ -134,7 +134,7 @@ int ft_datawrite(file, fits, data, pixtype)
     if( pad && (pad != FT_BLOCK) )
       ftWrite(file, blok , 1, pad);
 
-    if ( mdata != fdata ) Free(fdata);
+    if ( mdata != fdata ) (void)Free(fdata);
     return 1;
 }
 

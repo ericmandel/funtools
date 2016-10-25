@@ -128,7 +128,7 @@ FITSHead ft_headcopy(fits)
 	ft_syncdata(head);
 
 	if( head->index && !fits->index ){
-	  Free(head->index);
+	  (void)Free(head->index);
 	  head->index = NULL;
 	}
 
@@ -145,14 +145,14 @@ void ft_headfree(fits, freecards)
 
 	if ( --fits->rfcount ) return;
 
-	if ( fits->index )    Free(fits->index);
-	if ( fits->filename ) Free(fits->filename);
+	if ( fits->index )    (void)Free(fits->index);
+	if ( fits->filename ) (void)Free(fits->filename);
 
 	if ( fits->basic ) ft_basicfree(fits->basic);
 	if ( fits->image ) ft_imagefree(fits->image);
 	if ( fits->table ) ft_tablefree(fits->table);
 
-	if ( fits->mem == FT_MALLOC && freecards ) Free(fits->cards);
+	if ( fits->mem == FT_MALLOC && freecards ) (void)Free(fits->cards);
 
 #ifdef HAVE_SYS_MMAN_H
         if ( fits->mem == FT_MMAP  ) ft_munmap(fits);
@@ -163,7 +163,7 @@ void ft_headfree(fits, freecards)
 
 	if ( fits->primary ) ft_headfree(fits->primary, 1);
 
-	Free(fits);
+	(void)Free(fits);
 }
 
 void ft_primlink(prim, fits)

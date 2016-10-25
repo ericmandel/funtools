@@ -15,7 +15,7 @@ ft_fileimageread(file, fits, data, x)
 {
 	int	size;
 
-    ReAlloc(*data, sizeof(struct FITSFile) * ++x->n);
+	(void)ReAlloc(*data, sizeof(struct FITSFile) * ++x->n);
 
     (*data)[x->n-1].bitpix = x->pixtype;
 

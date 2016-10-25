@@ -37,7 +37,7 @@ void ft_headindex(fits)
 {
 		int	i;
 
-	if ( fits->index ) Free(fits->index);
+		if ( fits->index ) (void)Free(fits->index);
 
 	Malloc(fits->index, sizeof(FITSCard *) * fits->ncard);
 	for ( i = 0; i < fits->ncard; i++ ) {

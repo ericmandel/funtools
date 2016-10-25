@@ -6,6 +6,15 @@
 #include <regions.h>
 #endif
 
+
+#ifndef UNUSED
+#ifdef __GNUC__
+#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+#else
+#  define UNUSED(x) UNUSED_ ## x
+#endif
+#endif
+
 /* panda and pie incorrectly used astronomical angles. fixed 4/2004 */
 #define USE_ASTRO_ANGLE 0
 
@@ -33,7 +42,7 @@ void initevregions(void)
 }
 
 static int polypt(double x, double y, double* poly, int count,
-		  double xstart, double ystart, int flag)
+		  double UNUSED(xstart), double ystart, int flag)
 {
   /*    x-- x value of point being tested */
   /* y-- y value of point being tested */
@@ -56,11 +65,6 @@ static int polypt(double x, double y, double* poly, int count,
 
   /* for all edges */
   int i;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    xstart = xstart;
-  }
 
   /* if flag is set, we check x, y against first point */
   if( flag && (x == poly[0]) && (y == poly[1]) ) return 1;
@@ -141,7 +145,7 @@ static int polypt(double x, double y, double* poly, int count,
   return crossings%2 ? 1 : 0;          /* if odd, point is inside */
 }
 
-static void quadeq(double a, double b, double c, 
+static void quadeq(double a, double b, double c,
 	    double *x1, double *x2, int *nr, int *nc)
 {
   double dis, q;
@@ -235,8 +239,6 @@ static int pie_intercept(double width, double height, double xcen, double ycen,
   /* convert to a Cartesian angle */
 #if USE_ASTRO_ANGLE
   angl = angl + 90.0;
-#else
-  angl = angl;
 #endif
   if(angl >= 360.0)
     angl = angl - 360.0;
@@ -307,7 +309,7 @@ int evannulus(GFilt g, int rno, int sno, int flag, int type,
   }
 }
 
-int evbox(GFilt g, int rno, int sno, int flag, int type,
+int evbox(GFilt g, int rno, int sno, int flag, int UNUSED(type),
 	  double x, double y,
 	  double xcen, double ycen, double xwidth, double yheight,
 	  double angle)
@@ -319,11 +321,6 @@ int evbox(GFilt g, int rno, int sno, int flag, int type,
   double hw_cos, hw_sin;	 /* l: products of half_width with sin, cos */
   double hh_cos, hh_sin;	 /* l: products of half_height with sin, cos */
   double xstart=0.0;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    type = type;            
-  }
 
   if( (xwidth == 0) && (yheight==0) ){
     return(!flag);
@@ -392,7 +389,7 @@ int evbox(GFilt g, int rno, int sno, int flag, int type,
     }
   }
   if( (((y>=g->shapes[sno].ystart) && (y<=g->shapes[sno].ystop))	&&
-       polypt(x, y, g->shapes[sno].pts, g->shapes[sno].npt/2, 
+       polypt(x, y, g->shapes[sno].pts, g->shapes[sno].npt/2,
 	      xstart, g->shapes[sno].ystart, 0)) == flag		){
     if( rno && flag ) g->rid = rno;
     return 1;
@@ -401,15 +398,10 @@ int evbox(GFilt g, int rno, int sno, int flag, int type,
     return 0;
 }
 
-int evcircle(GFilt g, int rno, int sno, int flag, int type,
+int evcircle(GFilt g, int rno, int sno, int flag, int UNUSED(type),
 	     double x, double y,
 	     double xcen, double ycen, double radius)
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    type = type;            
-  }
-
   if( radius == 0 ){
     return(!flag);
   }
@@ -523,17 +515,9 @@ int evellipse(GFilt g, int rno, int sno, int flag, int type,
   return !flag;
 }
 
-int evfield(GFilt g, int rno, int sno, int flag, int type,
-	    double x, double y)
+int evfield(GFilt g, int rno, int UNUSED(sno), int flag, int UNUSED(type),
+	    double UNUSED(x), double UNUSED(y))
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    sno = sno;
-    type = type;            
-    x = x;
-    y = y;
-  }
-
   if( flag ){
     if( rno && flag ) g->rid = rno;
     return 1;
@@ -542,16 +526,10 @@ int evfield(GFilt g, int rno, int sno, int flag, int type,
     return 0;
 }
 
-
-int evline(GFilt g, int rno, int sno, int flag, int type,
+int evline(GFilt g, int rno, int sno, int flag, int UNUSED(type),
 	   double x, double y,
 	   double x1, double y1, double x2, double y2)
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    type = type;            
-  }
-
   if( !g->shapes[sno].init ){
     g->shapes[sno].init = 1;
     g->shapes[sno].ystart = min(y1,y2);
@@ -611,7 +589,7 @@ int evpie(GFilt g, int rno, int sno, int flag, int type,
       return !flag;
     if (sweep < 0.0) sweep = sweep + 360.0;
     intrcpt1 = pie_intercept((double)width, (double)height, xcen, ycen, angle1,
-			     &(g->shapes[sno].pts[2]), 
+			     &(g->shapes[sno].pts[2]),
 			     &(g->shapes[sno].pts[3]));
     intrcpt2 = pie_intercept((double)width, (double)height, xcen, ycen, angle2,
 			     &x2, &y2);
@@ -645,7 +623,7 @@ int evpie(GFilt g, int rno, int sno, int flag, int type,
     }
   }
   if( (((y>=g->shapes[sno].ystart) && (y<=g->shapes[sno].ystop))	&&
-       polypt(x, y, g->shapes[sno].pts, g->shapes[sno].npt/2, 
+       polypt(x, y, g->shapes[sno].pts, g->shapes[sno].npt/2,
 	      xstart, g->shapes[sno].ystart, 1)) == flag		){
     if( rno && flag ) g->rid = rno;
     return 1;
@@ -662,16 +640,10 @@ int evqtpie(GFilt g, int rno, int sno, int flag, int type,
   return evpie(g, rno, sno, flag, type, x, y, xcen, ycen, angle1, angle2);
 }
 
-int evpoint(GFilt g, int rno, int sno, int flag, int type,
+int evpoint(GFilt g, int rno, int UNUSED(sno), int flag, int UNUSED(type),
 	    double x, double y,
 	    double xcen, double ycen)
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    sno = sno;
-    type = type;            
-  }
-
   if( ((x==xcen) && (y==ycen)) == flag ){
     if( rno && flag ) g->rid = rno;
     return 1;
@@ -682,7 +654,7 @@ int evpoint(GFilt g, int rno, int sno, int flag, int type,
 
 #ifdef __STDC__
 int
-evpolygon(GFilt g, int rno, int sno, int flag, int type,
+evpolygon(GFilt g, int rno, int sno, int flag, int UNUSED(type),
 	  double x, double y, ...)
 {
   int i, maxpts;
@@ -707,11 +679,6 @@ int evpolygon(va_alist) va_dcl
   x  = va_arg(args, double);
   y  = va_arg(args, double);
 #endif
-  /* avoid -W unused parameter warning */
-  if( 0 ){
-    type = type;            
-  }
-
   if( !g->shapes[sno].init ){
     g->shapes[sno].init = 1;
     /* allocate space for x,y arguments */
@@ -754,7 +721,7 @@ int evpolygon(va_alist) va_dcl
     }
   }
   if( (((y>=g->shapes[sno].ystart) && (y<=g->shapes[sno].ystop))	&&
-       polypt(x, y, g->shapes[sno].pts, g->shapes[sno].npt/2, 
+       polypt(x, y, g->shapes[sno].pts, g->shapes[sno].npt/2,
 	      xstart, g->shapes[sno].ystart, 0)) == flag		){
     if( rno && flag ) g->rid = rno;
     return 1;
@@ -1035,7 +1002,7 @@ int evbpanda(GFilt g, int rno, int sno, int flag, int type,
     if( !evbox(g, 0, xsno, 1, type, x, y, xcen, ycen, xhi, yhi, ang) )
       return(1);
     /* if its in the inner region we win */
-    else if( !evbox(g, 0, xsno+2, 1, type, x, y, xcen, ycen, xlo, ylo, 
+    else if( !evbox(g, 0, xsno+2, 1, type, x, y, xcen, ycen, xlo, ylo,
 		    ang) )
       return(1);
     /* if its not in the pie, we win */
@@ -1105,7 +1072,7 @@ int evepanda(GFilt g, int rno, int sno, int flag, int type,
     if( !evellipse(g, 0, xsno, 1, type, x, y, xcen, ycen, xhi, yhi, ang) )
       return(1);
     /* if its in the inner region we win */
-    else if( !evellipse(g, 0, xsno+2, 1, type, x, y, xcen, ycen, xlo, ylo, 
+    else if( !evellipse(g, 0, xsno+2, 1, type, x, y, xcen, ycen, xlo, ylo,
 			ang) )
       return(1);
     /* if its not in the pie, we win */
@@ -1190,7 +1157,7 @@ int evvannulus(va_alist) va_dcl
     }
     /* look through all of them to find the right one */
     for(i=0; i<n; i++){
-      if( evannulus(g, rno+i, sno+i, flag, type, x, y, xcen, ycen, 
+      if( evannulus(g, rno+i, sno+i, flag, type, x, y, xcen, ycen,
 		  xv[i], xv[i+1]) ){
 	return(1);
       }
@@ -1271,7 +1238,7 @@ int evvbox(va_alist) va_dcl
   ang = xv[--n];
   /* this should be impossible ... */
   if( n == 2 ){
-    return(evbox(g, rno, sno, flag, type, x, y, 
+    return(evbox(g, rno, sno, flag, type, x, y,
 		 xcen, ycen, xv[0], xv[1], ang));
   }
   if( flag ){

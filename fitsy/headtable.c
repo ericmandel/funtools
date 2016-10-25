@@ -106,7 +106,7 @@ FITSTable ft_tableloadhead(fits)
 
 	table->tabtype = !strcmp(xtension, "TABLE");
 	if ( !(table->tfields = ft_headgeti(fits, "TFIELDS", 0, 0, &card)) ) {
-	    Free(table);
+	    (void)Free(table);
 	    return NULL;
 	}
 	
@@ -275,9 +275,6 @@ void	ft_tablestorhead(fits, table)
 	FITSHead	fits;
 	FITSTable	table;
 {
-  /* avoid -W unused parameter warning */
-  if( 0 ) table = table;
-
   ft_basicstorhead(fits, fits->basic);
 }
 
@@ -297,6 +294,6 @@ void ft_tablefree(table)
 	    if ( table->col[i-1].ablank ) free(table->col[i-1].ablank);
 	}
 
-	Free(table->col);
-	Free(table);
+	(void)Free(table->col);
+	(void)Free(table);
 }

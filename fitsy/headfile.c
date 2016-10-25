@@ -33,9 +33,9 @@ FITSHead ft_headread0(file, card1, n)
 
     if ( ftRead(file, (void *)&fits->cards[0].c[n],
 	      1, FT_BLOCK - n) != FT_BLOCK - n ) {
-	Free(fits->cards);
-	Free(fits);
-	return NULL;
+      (void)Free(fits->cards);
+      (void)Free(fits);
+      return NULL;
     };
     
     ft_cardkey(&key, "END", 0);
@@ -46,7 +46,7 @@ FITSHead ft_headread0(file, card1, n)
 
 	if ( (nbloks <= 25) || (nbloks > 25 && nhist < FT_CARDS) ) {
 	    fits->ncard += FT_CARDS;
-	    ReAlloc(fits->cards, (nbloks+1) * FT_BLOCK + 1);
+	    (void)ReAlloc(fits->cards, (nbloks+1) * FT_BLOCK + 1);
 	    /* make sure there is a null at the end (EGM) */
 	    ((char *)fits->cards)[(nbloks+1) * FT_BLOCK] = '\0';
 	    ft_cardclr(&fits->cards[nbloks * FT_CARDS], FT_CARDS);
@@ -55,9 +55,9 @@ FITSHead ft_headread0(file, card1, n)
 
 	if ( ftRead(file, (void *)&fits->cards[nbloks * FT_CARDS], 
 		  1, FT_BLOCK) != FT_BLOCK ) {
-	    Free(fits->cards);
-	    Free(fits);
-	    return NULL;
+	  (void)Free(fits->cards);
+	  (void)Free(fits);
+	  return NULL;
 	}
     }
 

@@ -214,7 +214,7 @@ static int _ParseFixTokens(line1, line2)
 
 #ifdef ANSI_FUNC
 static int 
-_ParseLineState(Parse parse, int istate, char *mode)
+_ParseLineState(Parse parse, int istate, char *UNUSED(mode))
 #else
 _ParseLineState(parse, istate, mode)
      Parse parse;
@@ -227,9 +227,6 @@ _ParseLineState(parse, istate, mode)
 
   /* sanity check */
   if( !parse ) return PARSE_STATE_UNKNOWN;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ) mode = mode;
 
   /* get line */
   line = parse->cur;
@@ -760,7 +757,7 @@ Parse ParseNew(delims, comchars, eot, mode)
 
 #ifdef ANSI_FUNC
 int
-ParseLine(Parse parse, char *lbuf, char *mode)
+ParseLine(Parse parse, char *lbuf, char *UNUSED(mode))
 #else
 int ParseLine(parse, lbuf, mode)
      Parse parse;
@@ -775,9 +772,6 @@ int ParseLine(parse, lbuf, mode)
 
   /* use default if necessary */
   if( !parse ) parse = _parse;
-
-  /* avoid -W unused parameter warning */
-  if( 0 ) mode = mode;
 
   /* if we have turned this parser off, just return */
   if( parse->state & PARSE_STATE_BAD ) return 0;

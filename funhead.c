@@ -101,10 +101,10 @@ _FunHeadEdit(char *iname, char *oname, char *ename)
     switch(action){
     case 1:
       /* delete the parameter */
-      if( (card=ft_headfind(theader, key, 0, 0)) && card->c && *card->c ){
+      if( (card=ft_headfind(theader, key, 0, 0)) && *card->c ){
 	ft_headdel(theader, key, 0);
       }
-      else if( (card=ft_headfind(header, key, 0, 0)) && card->c && *card->c  ){
+      else if( (card=ft_headfind(header, key, 0, 0)) && *card->c  ){
 	ft_headdel(header, key, 0);
       }
       else{
@@ -113,8 +113,8 @@ _FunHeadEdit(char *iname, char *oname, char *ename)
       break;
     case 2:
       /* display the parameter */
-      if( ((card=ft_headfind(theader, key, 0, 0)) && card->c && *card->c)  ||
- 	  ((card=ft_headfind(header, key, 0, 0)) && card->c && *card->c)   ){
+      if( ((card=ft_headfind(theader, key, 0, 0)) && *card->c)  ||
+ 	  ((card=ft_headfind(header, key, 0, 0)) && *card->c)   ){
 	strncpy(tbuf, card->c, FT_CARDLEN);
 	tbuf[FT_CARDLEN] = '\0';
 	fprintf(stdout, "%s\n", tbuf);

@@ -99,7 +99,7 @@ int main (int argc, char **argv)
 	/* point to the i'th row */
 	ev = ebuf+i;
 	/* make sure ascii vector is null-terminated */
-	ev->shape[17] = '\0';
+	ev->shape[16] = '\0';
 	/* used with bpix.ev */
 	if( haveshape ){
 	  cluc(ev->shape);

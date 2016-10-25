@@ -78,7 +78,7 @@ FITSHead ft_tableheader(char *eventdef, int nev)
   char type[SZ_LINE];
   char name[SZ_LINE];
   char dim[SZ_LINE];
-  char *neventdef;
+  char *neventdef = NULL;
   char *nevdef;
   char *d, *n, *s, *t, u[2];
   char **names, **types, **dims;

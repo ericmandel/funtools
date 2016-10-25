@@ -18,6 +18,14 @@
 #include <swap.h>
 #include <xalloc.h>
 
+#ifndef UNUSED
+#ifdef __GNUC__
+#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+#else
+#  define UNUSED(x) UNUSED_ ## x
+#endif
+#endif
+
 extern char *optarg;
 extern int optind;
 
@@ -128,14 +136,13 @@ static char macrobuf[SZ_LINE];
 
 #ifdef ANSI_FUNC
 static char *
-MacroCB(char *name, void *client_data)
+MacroCB(char *name, void *UNUSED(client_data))
 #else
 static char *MacroCB(name, client_data)
 	char *name;
 	void *client_data;
 #endif
 {
-  if( 0 ) client_data = client_data;
   if( !strcmp(name, "TEV") ){
     sprintf(macrobuf, "%10d", tev);
     return macrobuf;

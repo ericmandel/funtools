@@ -758,7 +758,7 @@ char *wchar;		/* Suffix character for one of multiple WCS */
 
 	/* SCAMP convention */
 	if (wcs->prjcode == WCS_TAN && wcs->naxis == 2) { 
-	    int n;
+	    int n = 0;
 	    if (wcs->inv_x) {
 		poly_end(wcs->inv_x);
 		wcs->inv_x = NULL;

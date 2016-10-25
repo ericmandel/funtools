@@ -20,6 +20,14 @@
 #define PROTOTYPE(X)    ( )
 #endif
 
+#ifndef UNUSED
+#ifdef __GNUC__
+#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+#else
+#  define UNUSED(x) UNUSED_ ## x
+#endif
+#endif
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif

@@ -234,7 +234,7 @@ HCProcess(hc, s)
   }
 
   /* add to expression */
-  if( hc->tbuf ){
+  if( *hc->tbuf ){
     len = strlen(tbuf);
     /* make sure we have ennough room */
     if( (len + hc->clen + 1) >= hc->maxlen ){
