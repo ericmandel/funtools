@@ -139,8 +139,8 @@ int FunParamPuts _PRx((Fun fun, char *name, int n, char *value,
 		       char *comm, int append));
 
 /* funcalc.l */
-char *FunCalcParse _PRx((char *iname, char *cmd, char *expr, 
-			 char *autod, int args));
+char *FunCalcParse _PRx((char *iname, char *oname,
+                         char *cmd, char *expr, char *autod, int args));
 
 /* funwcs.c */
 struct WorldCoor *_FunWCS _PRx((Fun fun, int doimage));

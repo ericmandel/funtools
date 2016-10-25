@@ -279,7 +279,7 @@ _CalcCB(char *name, void *client_data)
 #else
 static char *_CalcCB(name, client_data)
 	char *name;
-        void *client_data;
+	void *client_data;
 #endif
 {
   CalcCols cur;  
@@ -714,10 +714,12 @@ void _CalcCat(str, ostr, olen)
 
 #ifdef YY_USE_PROTOS
 char *
-FunCalcParse(char *iname, char *cmd, char *ex, char *autod, int narg)
+FunCalcParse(char *iname, char *oname,
+             char *cmd, char *ex, char *autod, int narg)
 #else
-char *FunCalcParse(iname, cmd, ex, autod, narg)
+char *FunCalcParse(iname, oname, cmd, ex, autod, narg)
     char *iname;
+    char *oname;
     char *cmd;
     char *ex;
     char *autod;
