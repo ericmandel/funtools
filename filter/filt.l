@@ -128,6 +128,7 @@ static int nmask;
 static int got;
 static int offscl;
 static int xtype, ytype;
+static int brlev;
 static int tltyp[2];
 
 static double lastd1;
@@ -243,6 +244,7 @@ DTYPE	(\({US}char\)|\({US}short{II}\)|\({US}int\)|\({US}long{II}\)|\(float\)|\(d
 %x AREG
 %x INCLUDE
 %x COMM
+%x JSON
 
 %%
 
@@ -271,6 +273,27 @@ compass     { BEGIN COMM; }
 <COMM>\n    { BEGIN INITIAL; }
 <COMM>\\n   { BEGIN INITIAL; }
 <COMM>.     { /* ignore comments up to eol */ ; }
+
+"{" {
+  /* json object finished a region */
+  if( YY_START == REG ){
+    _FiltLexRegionEnd();
+    _FiltLexNew(); 
+  } else {
+    _FiltLexNew(); 
+  }
+  brlev++;
+  BEGIN JSON;
+}
+<JSON>"{" {
+  brlev++;
+}
+<JSON>"}" {
+  if( --brlev == 0 ){
+    BEGIN INITIAL;
+  }
+}
+<JSON>. { /* ignore json */ ;}
 
 [+-]?text([ \t]+|{SP}\({SP})[^;\n]*{EOL}  	{ ; /* ignore */ }
 [+-]?vector([ \t]+|{SP}\({SP})[^;\n]*{EOL}  	{ ; /* ignore */ }
@@ -2433,6 +2456,7 @@ static void _FiltLexEnd()
   int i;
 
   /* reset state variables */
+  brlev = 0;
   colargs = 0;
   initbindefs = 0;
   include_stack_ptr = 0;

@@ -173,6 +173,14 @@ case $name in
  		$*
   ;;
 
+  js9)
+  ./configure 	$CF					\
+		--prefix=$HOME				\
+      		--with-filter-cflags="-O2"		\
+  		CC=gcc CFLAGS="$CFLAGS $GCCFLAGS"	\
+ 		$*
+  ;;
+
   cfa208*|moscow*)
   ./configure 	$CF					\
 		--prefix=${HOME}			\
@@ -184,7 +192,6 @@ case $name in
   akela*|baba*)
   ./configure 	$CF					\
       		--with-filter-cflags="-O2"		\
-		--prefix=${HOME}			\
 		CC=gcc CFLAGS="$CFLAGS $GCCFLAGS" $*
   ;;
 
