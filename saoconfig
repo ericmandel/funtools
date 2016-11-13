@@ -191,6 +191,7 @@ case $name in
 
   akela*|baba*)
   ./configure 	$CF					\
+		--prefix=${HOME}			\
       		--with-filter-cflags="-O2"		\
 		CC=gcc CFLAGS="$CFLAGS $GCCFLAGS" $*
   ;;
