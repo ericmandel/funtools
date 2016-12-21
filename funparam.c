@@ -195,6 +195,7 @@ int FunParamGeti(fun, name, n, defval, got)
   if( doprim || fun->doprim ){
     if( fun->header->primary )
       hd = fun->header->primary;
+    else
       goto done;
   }
   else{
@@ -243,6 +244,7 @@ longlong FunParamGetl(fun, name, n, defval, got)
   if( doprim || fun->doprim ){
     if( fun->header->primary )
       hd = fun->header->primary;
+    else
       goto done;
   }
   else{
