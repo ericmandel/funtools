@@ -273,6 +273,7 @@ static int _FunTextGetLine(fun, iline, lbuf, llen)
 #endif
 {
   int len;
+  unsigned int i;
   char *lptr=NULL;
 
   /* initialize */
@@ -300,6 +301,12 @@ static int _FunTextGetLine(fun, iline, lbuf, llen)
   if( lptr ){
     /* get next line, error if none */
     if( !ggets(fun->gio, lptr, llen) ){
+      return 0;
+    }
+  }
+  /* make sure all characters are printable */
+  for(i=0; i<strlen(lbuf); i++){
+    if( !isprint(lbuf[i]) && !isspace(lbuf[i]) ){
       return 0;
     }
   }
