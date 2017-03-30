@@ -586,7 +586,9 @@ static int FilterProgWrite_C(filter)
 	else{
 	  dsize = ft_sizeof(filter->fhd->table->col[sp->idx].type);
 	}
-	pad =  dsize - (offset % dsize);
+	if( dsize > 0 ){
+	  pad =  dsize - (offset % dsize);
+	}
 	if( pad == dsize ) pad = 0;
 	offset += pad;
 	evsize += pad;

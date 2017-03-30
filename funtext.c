@@ -304,7 +304,7 @@ static int _FunTextGetLine(fun, iline, lbuf, llen)
       return 0;
     }
   }
-  /* make sure all characters are printable */
+  /* make sure all characters are valid */
   for(i=0; i<strlen(lbuf); i++){
     if( !isprint(lbuf[i]) && !isspace(lbuf[i]) ){
       return 0;
@@ -1098,7 +1098,6 @@ headguess:
 	case PARSE_DASH:
 	case PARSE_COMMENT:
 	case PARSE_EOL:
-	  break;
 	default:
 	  gwarning(stderr,
 	   "internal text parser error: invalid type in text header: '%c'\n", 
