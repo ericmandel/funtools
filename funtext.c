@@ -932,7 +932,8 @@ header:
 	if( fun->parsers[p]->state & PARSE_STATE_BAD ) continue;
 	if( fun->parsers[p]->types[0] == PARSE_STRING ){
 	  for(t=0; t<fun->parsers[p]->ntoken; t++){
-	    if( !strchr(fun->parsers[p]->tokens[t].sval, ':') ){
+	    if( !fun->parsers[p]->tokens[t].sval ||
+		!strchr(fun->parsers[p]->tokens[t].sval, ':') ){
 	      nheader++;
 	      break;
 	    }
