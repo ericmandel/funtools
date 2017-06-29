@@ -9,6 +9,7 @@ foo*
 goo*
 node.log
 Makefile
+!doc/Makefile
 conf.h
 config.status
 config.log
