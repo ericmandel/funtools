@@ -572,10 +572,10 @@ funsky.o:	funsky.c funtools.h funtoolsP.h
 funtable.o:	funtable.c funtools.h funtoolsP.h chandra.h
 funcalc.o:	funcalc.c calc.h funtools.h funtoolsP.h
 		$(CC) -c $(CC_SWITCHES) $< \
-		-DFUN_INCLUDE="\"-I${prefix}/include\"" \
+		-DFUN_INCLUDE="\"-I$(INCLUDE_INSTALL_DIR)\"" \
 		-DFUNCALC_CC="$(FUNCALC_CC)" \
 		-DFUNCALC_CFLAGS="$(FUNCALC_CFLAGS)" \
-		-DFUN_LIB="\"-L${exec_prefix}/lib -lfuntools ${EXTRA_LIBS} -lm\""
+		-DFUN_LIB="\"-L$(LIB_INSTALL_DIR) -lfuntools ${EXTRA_LIBS} -lm\""
 lex.calc.o:	 lex.calc.c tabcalc_c.h
 
 headers:	tabcalc_c.h
