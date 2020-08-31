@@ -225,7 +225,7 @@ funmainlib.c:	$(MAINLIBOBJS) mkfunmainlib
 		echo $(PROGS) | ./mkfunmainlib > funmainlib.c;
 
 shlib:		sublib $(LIBOBJS)
-		@(rm -rf $(PACKAGE)tmp; mkdir $(PACKAGE)tmp; \
+		@(rm -rf $(PACKAGE)tmp; mkdir -p $(PACKAGE)tmp; \
 		(cd $(PACKAGE)tmp && ar x ../$(LIB)); \
 		CC='$(CC)' CXX=$(CXX) \
 		./mklib -o $(PACKAGE) $(PACKAGE)tmp/*.o; \
@@ -237,7 +237,7 @@ mainlib:	$(MAINLIBOBJS) funmainlib.o lex.calc.o
 		$(RANLIB) lib$(PACKAGE)MainLib.a)
 
 shmainlib:	mainlib
-		@(rm -rf $(PACKAGE)tmp; mkdir $(PACKAGE)tmp; \
+		@(rm -rf $(PACKAGE)tmp; mkdir -p $(PACKAGE)tmp; \
 		(cd $(PACKAGE)tmp && ar x ../lib$(PACKAGE)MainLib.a); \
 		CC='$(CC)' CXX='$(CXX)' \
 		./mklib -o $(PACKAGE)MainLib -L. -lfuntools $(PACKAGE)tmp/*.o;\
@@ -248,7 +248,7 @@ tclfun:		$(LIB) tclmainlib.o tclfun.o
 		$(RANLIB) libtclfun.a)
 
 shtclfun:	tclfun
-		@(rm -rf $(PACKAGE)tmp; mkdir $(PACKAGE)tmp; \
+		@(rm -rf $(PACKAGE)tmp; mkdir -p $(PACKAGE)tmp; \
 		(cd $(PACKAGE)tmp && ar x ../$(LIB) && ar x ../libtclfun.a); \
 		CC='$(CC)' CXX='$(CXX)' \
 		./mklib -o tclfun $(PACKAGE)tmp/*.o; \
@@ -462,7 +462,7 @@ install-binaries: lib $(PROGS) $(SCRIPTS) $(DS9HELPERS)
 install-man:
 	@if [ ! -d $(MAN_INSTALL_DIR) ] ; then \
 	    echo "Making directory $(MAN_INSTALL_DIR)"; \
-	    mkdir $(MAN_INSTALL_DIR); \
+	    mkdir -p $(MAN_INSTALL_DIR); \
 	    chmod 755 $(MAN_INSTALL_DIR); \
 	    else true; \
 	fi;
@@ -473,7 +473,7 @@ install-man:
 		M="$(MAN_INSTALL_DIR)/man$$E"; \
 		if [ ! -d $$M ] ; then \
 		    echo "Making directory $$M"; \
-		    mkdir $$M; \
+		    mkdir -p $$M; \
 		    chmod 755 $$M; \
 		    else true; \
 		fi; \
@@ -629,7 +629,7 @@ Confiles:
 
 dist:		configure
 		($(RM) -r $(DISTDIR); \
-		mkdir $(DISTDIR); \
+		mkdir -p $(DISTDIR); \
 		cp -p README INSTALL COPYING $(DISTDIR)/.; \
 		cp -p *.c *.h *.l $(DISTDIR)/.; \
 		cp -p Makefile.in $(DISTDIR)/.; \
@@ -660,14 +660,14 @@ dist:		configure
 		cp -pR funtest txt faq $(DISTDIR)/.;\
 		cp -p $(TEMPLATES) $(DISTDIR)/.; \
 		cp -p $(FILES) $(DISTDIR)/.; \
-		mkdir $(DISTDIR)/doc; \
+		mkdir -p $(DISTDIR)/doc; \
 		cp -p ./doc/*.html ./doc/*.c  $(DISTDIR)/doc/.; \
 		cp -p ./doc/*.ps ./doc/*.pdf $(DISTDIR)/doc/.; \
 		cp -p ./doc/Makefile $(DISTDIR)/doc/.; \
 		cp -p ./doc/szlong.c $(DISTDIR)/doc/.; \
-		mkdir $(DISTDIR)/doc/sman; \
+		mkdir -p $(DISTDIR)/doc/sman; \
 		cp -p ./doc/sman/* $(DISTDIR)/doc/sman/.; \
-		mkdir $(DISTDIR)/man; \
+		mkdir -p $(DISTDIR)/man; \
 		cp -p -R ./man/* $(DISTDIR)/man/.)
 
 release:	dist
