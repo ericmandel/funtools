@@ -389,9 +389,9 @@ install::
 		   (cd $$dir; $(MAKE) INSTALL_ROOT=$(INSTALL_ROOT) INCLUDE_INSTALL_DIR=$(INCLUDE_INSTALL_DIR) $@) ; \
 		done
 
-install::	install-man
-
 install::	install-share
+
+install::	install-man
 
 install::	install-data
 
