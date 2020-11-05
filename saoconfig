@@ -164,7 +164,7 @@ case $name in
  		$*
   ;;
 
-  bokhara*)
+  bokhara*|engle*)
   ./configure 	$CF					\
 		--prefix=$HOME				\
       		--enable-dl=yes				\
