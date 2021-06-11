@@ -173,9 +173,9 @@ case $name in
  		$*
   ;;
 
-  js9)
+  js9*)
   ./configure 	$CF					\
-		--prefix=$HOME				\
+		--prefix=/js9				\
       		--with-filter-cflags="-O2"		\
   		CC=gcc CFLAGS="$CFLAGS $GCCFLAGS"	\
  		$*
