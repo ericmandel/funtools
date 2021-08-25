@@ -698,7 +698,7 @@ untar:		FORCE
 
 tests:		FORCE
 		@(cd funtest; \
-	          echo funtest; \
+	          funtest; \
 		  echo " "; \
 		  for f in `ls foo.i*`; do \
 		    echo "log file: $$f"; \
