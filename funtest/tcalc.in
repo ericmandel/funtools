@@ -1,7 +1,7 @@
 #OPROG	funcalc
 #NPROG	../funcalc
-#OFILE	../../data/snr.ev
-#NFILE	../../data/snr.ev.gz
+#OFILE	$HOME/data/snr.ev
+#NFILE	$HOME/data/snr.ev.gz
 
 
 #CMD	#files	funcalc expression

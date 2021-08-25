@@ -1,7 +1,7 @@
 #OPROG	funcnts
 #NPROG	../funcnts
-#OFILE	../../data/snr.ev
-#NFILE	../../data/snr.ev
+#OFILE	$HOME/data/snr.ev
+#NFILE	$HOME/data/snr.ev
 
 #CMD	Old Region			New region
 #---	-----------------		---------------------

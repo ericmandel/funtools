@@ -6,7 +6,7 @@ TEXT_EXTNAME=EVENTS
 export TEXT_EXTNAME
 
 S=$HOME/data/snr.ev
-T=$HOME/data/snrev.txt.gz
+T=$HOME/data/snr.txt.gz
 
 export S
 export T
