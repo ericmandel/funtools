@@ -698,6 +698,9 @@ untar:
 		$(RM) -r o$(DISTNAME); mv $(DISTNAME) o$(DISTNAME); \
 		tar xfz $(DISTNAME).tar.gz)
 
+test:
+		cd funtest && funtest
+
 pure:		funcalc.pure funcen.pure funcnts.pure funcone.pure \
 		fundisp.pure funhead.pure funimage.pure funhist.pure \
 		funmerge.pure funsky.pure funtable.pure \
