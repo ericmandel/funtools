@@ -507,7 +507,7 @@ Makefile:	Makefile.in
 
 RM =		rm -f
 
-topclean:
+topclean:	FORCE
 		$(RM) *.a *.so *.so.? *.so.?.? *.o *.dylib \
 			$(PROGS) tmain \
 			$(SCRIPTS) $(DS9HELPERS) \
@@ -519,10 +519,10 @@ topclean:
 			doc/*~ doc/*.bak
 		$(RM) -r autom4te.cache
 
-binclean:
+binclean:	FORCE
 		$(RM) ./lib/* ./include/* ./bin/*
 
-subclean:
+subclean:	FORCE
 		for dir in $(SUBDIRS); do \
 		  echo making clean in subdir $$dir ; \
 		  (cd $$dir; if [ -f Makefile ]; then $(MAKE) clean; fi); \
@@ -543,7 +543,7 @@ Distclean:	distclean
 		done
 
 
-depend:
+depend:		FORCE
 		makedepend -- $(DEPEND_SWITCHES) -- $(SRCS)
 
 .c.o:
@@ -619,7 +619,7 @@ Configure:	FORCE
 		   fi; \
 		done
 
-Confiles:	
+Confiles:	FORCE
 		@(for dir in $(SUBDIRS); do \
 		   echo " "; \
 		   echo Copying configure files to $$dir ...; \
@@ -675,7 +675,7 @@ release:	dist
 		tar cf - $(DISTNAME) | \
 		gzip -9 -c > $(FTPDIR)/$(DISTNAME).tar.gz)
 
-tar:
+tar:		FORCE
 		($(RM) -r config.cache; \
 		cd ..; \
 		tar cf - $(DISTNAME) | gzip -9 -c > $(DISTNAME).tar.gz)
@@ -683,17 +683,17 @@ tar:
 errcheck:
 		@-egrep 'error|warning|ld:|collect2:|make:' foo | egrep -v "^lex.*but not used"
 
-itar:
+itar:		FORCE
 		(cd doc/sman; \
 		tar cf - . | gzip -9 -c > ../../../$(DISTNAME)-iman.tar.gz)
 
-sman:
+sman:		FORCE
 		@(cd doc && $(MAKE) index)
 
-docs:
+docs:		FORCE
 		@(cd doc; $(MAKE))
 
-untar:
+untar:		FORCE
 		(make clean; cd ..; \
 		$(RM) -r o$(DISTNAME); mv $(DISTNAME) o$(DISTNAME); \
 		tar xfz $(DISTNAME).tar.gz)
@@ -708,6 +708,8 @@ tests:		FORCE
 		    $(AWK) 'NF>0&&$$1!=")"{print $$0}'; \
 		    echo " "; \
 		  done)
+
+FORCE:
 
 pure:		funcalc.pure funcen.pure funcnts.pure funcone.pure \
 		fundisp.pure funhead.pure funimage.pure funhist.pure \
