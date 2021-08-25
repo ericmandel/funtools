@@ -698,8 +698,16 @@ untar:
 		$(RM) -r o$(DISTNAME); mv $(DISTNAME) o$(DISTNAME); \
 		tar xfz $(DISTNAME).tar.gz)
 
-test:
-		cd funtest && funtest
+tests:		FORCE
+		@(cd funtest; \
+	          echo funtest; \
+		  echo " "; \
+		  for f in `ls foo.i*`; do \
+		    echo "log file: $$f"; \
+		    egrep -v '^foo[0-9]?:|HERE|FILE|EXACT|SUM|PROG|REV|block factor|0a1,2|cur->x,cur->y|^\))' < $$f | \
+		    $(AWK) 'NF>0&&$$1!=")"{print $$0}'; \
+		    echo " "; \
+		  done)
 
 pure:		funcalc.pure funcen.pure funcnts.pure funcone.pure \
 		fundisp.pure funhead.pure funimage.pure funhist.pure \
