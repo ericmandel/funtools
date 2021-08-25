@@ -395,8 +395,6 @@ install::	install-man
 
 install::	install-data
 
-FORCE:
-
 # Note: before running ranlib below, must cd to target directory because
 # some ranlibs write to current directory, and this might not always be
 # possible (e.g. if installing as root).
