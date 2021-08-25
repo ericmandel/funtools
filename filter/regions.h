@@ -237,6 +237,18 @@ void impandai(GFilt g, int rno, int sno, int flag, int type,
 	      double xcen, double ycen,
 	      double anglo, double anghi, double angn,
 	      double radlo, double radhi, double radn);
+void imbpandai(GFilt g, int rno, int sno, int flag, int type,
+	       double x, double y,
+	       double xcen, double ycen,
+	       double anglo, double anghi, double angn,
+	       double xlo, double ylo, double xhi, double yhi, double radn,
+	       double ang);
+void imepandai(GFilt g, int rno, int sno, int flag, int type,
+	       double x, double y,
+	       double xcen, double ycen,
+	       double anglo, double anghi, double angn,
+	       double xlo, double ylo, double xhi, double yhi, double radn,
+	       double ang);
 void imnannulusi(GFilt g, int rno, int sno, int flag, int type,
 		 double x, double y,
 		 double xcen, double ycen,
@@ -391,6 +403,18 @@ int evpanda(GFilt g, int rno, int sno, int flag, int type,
 	    double xcen, double ycen,
 	    double anglo, double anghi, double angn,
 	    double radlo, double radhi, double radn);
+int evepanda(GFilt g, int rno, int sno, int flag, int type,
+	     double x, double y,
+	     double xcen, double ycen,
+	     double anglo, double anghi, double angn,
+	     double xlo, double ylo, double xhi, double yhi, double radn,
+	     double ang);
+int evbpanda(GFilt g, int rno, int sno, int flag, int type,
+	     double x, double y,
+	     double xcen, double ycen,
+	     double anglo, double anghi, double angn,
+	     double xlo, double ylo, double xhi, double yhi, double radn,
+	     double ang);
 #ifdef __STDC__
 int evpolygon(GFilt g, int rno, int sno, int flag, int type,
 	      double x, double y, ...);
