@@ -7,7 +7,7 @@ OPROG=../fundisp
 NPROG=../funimage
 STDIN=/dev/null
 OFILE=${HOME}/data/snr.fits
-NFILE=${HOME}/data/bzero.fits
+NFILE=${HOME}/data/snr1024.fits
 X=504
 Y=512
 

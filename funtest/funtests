@@ -100,16 +100,6 @@ echo "************** Executing tfundisp with filter3 **************"
 echo " "
 tfundisp $ARGS -b "(pha=5:7,pi=6:8)&&" < tregions.in
 
-echo "************** Executing tfunimage with sections **************"
-echo " "
-if [ x"$TXT" = x0 ]; then
-  tfunimage $ARGS < tsections.in
-else
-  F2=`echo "$ARGS" | awk '{print $3}'`  
-  F1=`echo $T | awk -F. '{print $1}'`.fits
-  tfunimage -f $F1 $F2 < tsections.in
-fi
-
 echo "************** Executing tevread with regions **************"
 echo " "
 tevread $ARGS < tregions.in
