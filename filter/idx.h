@@ -83,7 +83,7 @@ typedef struct _idxrowrec{
   int pid;
   struct _idxvalrec *v;
   char *fdata;
-  int flen;
+  size_t flen;
 } idxrowrec;
 
 /* values can be int, float, col, region, func */
