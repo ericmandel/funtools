@@ -318,6 +318,18 @@ int impanda(GFilt g, int rno, int sno, int flag, int type,
 	     double xcen, double ycen,
 	     double anglo, double anghi, double angn,
 	     double radlo, double radhi, double radn);
+int imbpanda(GFilt g, int rno, int sno, int flag, int type,
+	     double x, double y,
+	     double xcen, double ycen,
+	     double anglo, double anghi, double angn,
+	     double xlo, double ylo, double xhi, double yhi, double radn,
+	     double ang);
+int imepanda(GFilt g, int rno, int sno, int flag, int type,
+	     double x, double y,
+	     double xcen, double ycen,
+	     double anglo, double anghi, double angn,
+	     double xlo, double ylo, double xhi, double yhi, double radn,
+	     double ang);
 int imnannulus(GFilt g, int rno, int sno, int flag, int type,
 	       double x, double y,
 	       double xcen, double ycen,
