@@ -9,3 +9,5 @@ s/.*In this statement, "\([^)]*\)" is not declared.*/\1/p
 s/.*The identifier "\([^)]*\)" is undefined.*/\1/p
 # Intel icc
 s/.*identifier "\([^)]*\)" is undefined.*/\1/p
+# clang
+s/.*use of undeclared identifier [`'‘]\([^)]*\)['‘].*/\1/p

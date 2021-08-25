@@ -258,7 +258,7 @@ again:
     if( !tries ){
       if( (s=Find(FUNCALC_SED, "r", NULL, funpath)) ){
 	snprintf(tbuf, SZ_LINE-1,
-		 "sed -n -f %s %s | awk '{print \"double\",$1\"=0.0;\"}'\n", 
+		 "sed -n -f %s %s | sort -u | awk '{print \"double\",$1\"=0.0;\"}'\n",
 		 s, log);
 	if( (fp = popen(tbuf, "r")) ){
 	  while( fgets(tbuf, SZ_LINE, fp) )
