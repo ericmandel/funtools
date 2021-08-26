@@ -290,7 +290,7 @@ int	*nbhead;	/* Number of bytes before start of data (returned) */
 	*(headnext+nbr+1) = 0;
 	ibhead = ibhead + 2880;
 	if (verbose)
-	    fprintf (stderr,"FITSRHEAD: %lld bytes in header\n",ibhead);
+	    fprintf (stderr,"FITSRHEAD: %ld bytes in header\n",ibhead);
 
 	/* Check to see if this is the final record in this header */
 	headend = ksearch (fitsbuf,"END");
