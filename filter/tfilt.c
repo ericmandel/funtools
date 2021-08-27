@@ -416,9 +416,10 @@ main(argc, argv)
     strcpy(bincols, ",bincols=(x,y)");
     strcat(mode, bincols);
   }
-  if( debug )
+  if( debug ){
     strcat(mode, ",debug=2");
-  strcat(mode, ",lexonly=1");
+    strcat(mode, ",lexonly=1");
+  }
   if( (s=getenv("FILTER_PAINT")) ){
     if( istrue(s) )
       strcat(mode, ",paint=true");
