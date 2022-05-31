@@ -3,22 +3,13 @@
 #endif
 #include <stdio.h>
 #include <ctype.h>
-#ifdef HAVE_STRING_H
 #include <string.h>
-#endif
-#if HAVE_STDLIB_H
 #include <stdlib.h>
-#else
-double strtod();
-#endif
 #include <math.h>
 
 int SAOdtype=0;
 
-double	SAOstrtod(str, ptr)
-	char	 *str;
-	char	**ptr;
-{
+double	SAOstrtod(char *str, char **ptr){
 	double	 d = 0.0;
 	double	 m = 0.0;
 	double	 s = 0.0;
@@ -73,19 +64,20 @@ double	SAOstrtod(str, ptr)
 		}
  
             return sign * (d + m / 60 + s / 3600);
-        }
+        } else if( (c = **ptr) &&
+		   (c == 'd' || c == 'r' || c == '\'' || c == '"') &&
+		   ((*((*ptr)+1)) == '\0') ){
+	  SAOdtype = c;
+	  (*ptr)++;
+	  return d;
+	}
  
-        /* I guess that there wern't really any units.
+        /* I guess that there weren't really any units.
 	 */
 	return d;
 }
 
-char *SAOconvert(buff, val, type, prec)
-	char	*buff;
-	double	 val;
-	int	 type;
-	int	 prec;
-{
+char *SAOconvert(char *buff, double val, int type, int prec){
                 char    fmt[32];
                 char   *sign = "";
  
