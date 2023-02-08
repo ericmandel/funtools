@@ -5612,11 +5612,11 @@ fi
     *darwin*|*Darwin*)
         if test x"$fpic" = x"yes" ; then
 	  CFLAGS="$CFLAGS -fPIC"
-          echo "$as_me:$LINENO: result: adding -fno-common, -fPIC to CFLAGS" >&5
-echo "${ECHO_T}adding -fno-common, -fPIC to CFLAGS" >&6
+          echo "$as_me:$LINENO: result: adding -fPIC to CFLAGS" >&5
+echo "${ECHO_T}adding -fPIC to CFLAGS" >&6
 	else
-          echo "$as_me:$LINENO: result: adding -fno-common to CFLAGS" >&5
-echo "${ECHO_T}adding -fno-common to CFLAGS" >&6
+          echo "$as_me:$LINENO: result: none" >&5
+echo "${ECHO_T}none" >&6
 	fi
 	;;
     * )

@@ -235,9 +235,9 @@ case $host_os in
     *darwin*|*Darwin*)
         if test x"$fpic" = x"yes" ; then
 	  CFLAGS="$CFLAGS -fPIC"
-          AC_MSG_RESULT([adding -fno-common, -fPIC to CFLAGS])
+          AC_MSG_RESULT([adding -fPIC to CFLAGS])
 	else
-          AC_MSG_RESULT([adding -fno-common to CFLAGS])
+          AC_MSG_RESULT(none)
 	fi
 	;;
     * )
