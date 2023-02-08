@@ -1,7 +1,7 @@
 #	This file is an input file used by the GNU "autoconf" program to
 #	generate the file "configure", which is run during XPA installation
 #	to configure the system for the local environment.
-AC_INIT(funtools, 1.4.7, saord@cfa.harvard.edu, funtools)
+AC_INIT(funtools, 1.4.8, saord@cfa.harvard.edu, funtools)
 
 AC_CONFIG_HEADERS([conf.h ./gnu/conf.h ./funtest/conf.h])
 AC_CONFIG_SRCDIR([./funtools.h])
@@ -233,16 +233,11 @@ case $host_os in
         AC_CHECK_LIB(db, snprintf, EXTRA_LIBS="$EXTRA_LIBS -ldb")
         ;;
     *darwin*|*Darwin*)
-	LDFLAGS="$LDFLAGS $CFLAGS"
-        G=`$CC -v 2>&1 | grep version | awk '{print $3}' | awk -F. '{print $1$2}'`
-        if test x"$G" != x -a "$G" -lt 42; then
-	  CFLAGS="$CFLAGS -no-cpp-precomp"
-        fi
         if test x"$fpic" = x"yes" ; then
 	  CFLAGS="$CFLAGS -fPIC"
-          AC_MSG_RESULT([adding -fno-common, -fPIC to CFLAGS])
+          AC_MSG_RESULT([adding -fPIC to CFLAGS])
 	else
-          AC_MSG_RESULT([adding -fno-common to CFLAGS])
+          AC_MSG_RESULT(none)
 	fi
 	;;
     * )
