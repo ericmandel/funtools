@@ -233,10 +233,6 @@ case $host_os in
         AC_CHECK_LIB(db, snprintf, EXTRA_LIBS="$EXTRA_LIBS -ldb")
         ;;
     *darwin*|*Darwin*)
-        G=`$CC -v 2>&1 | grep version | awk '{print $3}' | awk -F. '{print $1$2}'`
-        if test x"$G" != x -a "$G" -lt 42; then
-	  CFLAGS="$CFLAGS -no-cpp-precomp"
-        fi
         if test x"$fpic" = x"yes" ; then
 	  CFLAGS="$CFLAGS -fPIC"
           AC_MSG_RESULT([adding -fno-common, -fPIC to CFLAGS])
